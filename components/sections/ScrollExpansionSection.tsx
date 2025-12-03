@@ -25,7 +25,7 @@ export const ScrollExpansionSection = () => {
         <div className="min-h-screen w-full bg-white dark:bg-black relative">
             <ScrollExpandMedia
                 mediaType="video"
-                mediaSrc="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
+                mediaSrc="/videos/scroll-video.mp4"
                 bgImageSrc="https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1920&auto=format&fit=crop"
                 title="Expand Your Vision"
                 date="Future Ready"

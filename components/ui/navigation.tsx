@@ -12,14 +12,15 @@ export const Navigation: React.FC = () => {
   const [activeSection, setActiveSection] = useState("hero");
   const [expanded, setExpanded] = useState(false);
   const [hovering, setHovering] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const hoverTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const navItems: NavItem[] = [
     { label: "Home", id: "hero" },
-    { label: "Our Work", id: "work" },
+    { label: "Work", id: "work" },
     { label: "Services", id: "services" },
-    { label: "Journey", id: "journey" },
+    { label: "Process", id: "journey" },
     { label: "Contact", id: "contact" },
   ];
 
@@ -30,6 +31,15 @@ export const Navigation: React.FC = () => {
     mass: 0.8,
     restDelta: 0.01,
   });
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 640);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   // SCROLL DETECTION - Automatically detect active section
   useEffect(() => {
@@ -56,39 +66,43 @@ export const Navigation: React.FC = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Handle hover expansion
+  // Handle hover/click expansion
   useEffect(() => {
-    if (hovering) {
-      setExpanded(true);
-      pillWidth.set(640);
-      if (hoverTimeoutRef.current) {
-        clearTimeout(hoverTimeoutRef.current);
-      }
+    if (expanded) {
+      // On mobile, expand to 90vw, on desktop to 640px (or fit content)
+      const targetWidth = isMobile ? window.innerWidth * 0.9 : 640;
+      pillWidth.set(targetWidth);
     } else {
-      hoverTimeoutRef.current = setTimeout(() => {
-        setExpanded(false);
-        pillWidth.set(180);
-      }, 500);
+      pillWidth.set(180);
     }
-
-    return () => {
-      if (hoverTimeoutRef.current) {
-        clearTimeout(hoverTimeoutRef.current);
-      }
-    };
-  }, [hovering, pillWidth]);
+  }, [expanded, isMobile, pillWidth]);
 
   const handleMouseEnter = () => {
-    setHovering(true);
+    if (!isMobile) {
+      setHovering(true);
+      setExpanded(true);
+      if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current);
+    }
   };
 
   const handleMouseLeave = () => {
-    setHovering(false);
+    if (!isMobile) {
+      setHovering(false);
+      hoverTimeoutRef.current = setTimeout(() => {
+        setExpanded(false);
+      }, 500);
+    }
+  };
+
+  const handleMobileToggle = () => {
+    if (isMobile) {
+      setExpanded(!expanded);
+    }
   };
 
   const handleSectionClick = (sectionId: string) => {
     setActiveSection(sectionId);
-    setHovering(false);
+    setExpanded(false); // Collapse on click
 
     const element = document.getElementById(sectionId);
     if (element) {
@@ -104,12 +118,13 @@ export const Navigation: React.FC = () => {
       <motion.div
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
+        onClick={handleMobileToggle}
         style={{
           width: pillWidth,
           height: "64px",
-          maxWidth: "90vw",
+          maxWidth: "95vw", // Ensure it doesn't overflow screen
         }}
-        className="relative rounded-full pointer-events-auto overflow-hidden sm:overflow-visible"
+        className="relative rounded-full pointer-events-auto overflow-hidden sm:overflow-visible cursor-pointer sm:cursor-default"
       >
         {/* Liquid Glass Background Container */}
         <div
@@ -201,7 +216,7 @@ export const Navigation: React.FC = () => {
 
           {/* Expanded state - shows all nav items as plain buttons */}
           {expanded && (
-            <div className="flex items-center justify-between w-full gap-1 px-2">
+            <div className="flex items-center justify-between w-full gap-1 px-1 sm:px-2 overflow-x-auto no-scrollbar">
               {navItems.map((item, index) => {
                 const isActive = item.id === activeSection;
 
@@ -216,9 +231,12 @@ export const Navigation: React.FC = () => {
                       duration: 0.2,
                       ease: "easeOut",
                     }}
-                    onClick={() => handleSectionClick(item.id)}
+                    onClick={(e) => {
+                      e.stopPropagation(); // Prevent toggling when clicking an item
+                      handleSectionClick(item.id);
+                    }}
                     className={`
-                      relative px-3 py-2 rounded-full text-sm font-medium
+                      relative px-2 sm:px-3 py-2 rounded-full text-xs sm:text-sm font-medium
                       transition-all duration-200 cursor-pointer
                       whitespace-nowrap
                       ${isActive

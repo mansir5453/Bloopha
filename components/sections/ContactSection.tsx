@@ -41,7 +41,7 @@ export const ContactSection = () => {
                 </label>
                 <input
                   type="text"
-                  className="w-full px-4 py-2 sm:py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-sm sm:text-base"
+                  className="w-full px-4 py-2 sm:py-3 rounded-lg border border-gray-200 bg-white/50 text-gray-900 placeholder:text-gray-500 focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-sm sm:text-base backdrop-blur-sm"
                   placeholder="Your name"
                 />
               </div>
@@ -52,7 +52,7 @@ export const ContactSection = () => {
                 </label>
                 <input
                   type="email"
-                  className="w-full px-4 py-2 sm:py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-sm sm:text-base"
+                  className="w-full px-4 py-2 sm:py-3 rounded-lg border border-gray-200 bg-white/50 text-gray-900 placeholder:text-gray-500 focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-sm sm:text-base backdrop-blur-sm"
                   placeholder="your@email.com"
                 />
               </div>
@@ -61,7 +61,7 @@ export const ContactSection = () => {
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Project Type
                 </label>
-                <select className="w-full px-4 py-2 sm:py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-sm sm:text-base">
+                <select className="w-full px-4 py-2 sm:py-3 rounded-lg border border-gray-200 bg-white/50 text-gray-900 focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-sm sm:text-base backdrop-blur-sm">
                   <option>Brand Identity</option>
                   <option>Website Design</option>
                   <option>Marketing Strategy</option>
@@ -74,14 +74,14 @@ export const ContactSection = () => {
                 </label>
                 <textarea
                   rows={4}
-                  className="w-full px-4 py-2 sm:py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-sm sm:text-base resize-none"
+                  className="w-full px-4 py-2 sm:py-3 rounded-lg border border-gray-200 bg-white/50 text-gray-900 placeholder:text-gray-500 focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-sm sm:text-base resize-none backdrop-blur-sm"
                   placeholder="Tell us about your project..."
                 />
               </div>
 
               <div className="pt-2">
                 <LiquidButton variant="default" size="xl" className="w-full">
-                  <span className="text-white">Send Request</span>
+                  <span className="text-black font-semibold">Send Request</span>
                 </LiquidButton>
               </div>
             </form>

@@ -34,7 +34,7 @@ const IMAGES_3 = [
 
 export const MixedGallerySection = () => {
     return (
-        <section className="w-full relative">
+        <section id="work" className="w-full relative">
             {/* Part 1: 3D Animated Gallery */}
             <div className="relative pt-20 pb-10">
                 <ContainerStagger className="relative z-10 mb-12 place-self-center px-6 text-center">
