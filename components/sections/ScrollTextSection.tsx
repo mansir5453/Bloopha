@@ -29,6 +29,7 @@ export const ScrollTextSection = () => {
                         className="w-full max-w-7xl text-center text-3xl sm:text-6xl md:text-8xl font-bold uppercase tracking-tighter text-[#F0660A] whitespace-nowrap"
                         style={{
                             perspective: "500px",
+                            willChange: "transform",
                         }}
                     >
                         {characters.map((char, index) => (

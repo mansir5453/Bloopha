@@ -80,7 +80,7 @@ export const MixedGallerySection = () => {
                     }}
                 />
 
-                <ContainerScroll className="relative h-[200vh] sm:h-[250vh]">
+                <ContainerScroll className="relative h-[150vh] sm:h-[250vh]">
                     <ContainerSticky className="h-screen sticky top-0">
                         <GalleryContainer className="grid-cols-1 sm:grid-cols-3">
                             <GalleryCol yRange={["-10%", "2%"]} className="-mt-2 hidden sm:flex">
