@@ -9,7 +9,7 @@ import {
     motion,
     useScroll,
     useTransform,
-} from "framer-motion"
+} from "motion/react"
 
 import { cn } from "@/lib/utils"
 
@@ -23,7 +23,9 @@ const SPRING_CONFIG = {
     damping: 16,
     mass: 0.75,
     restDelta: 0.005,
+    duration: 0.3,
 } as const
+
 const blurVariants: Variants = {
     hidden: {
         filter: "blur(10px)",
@@ -38,6 +40,7 @@ const blurVariants: Variants = {
 const ContainerScrollContext = React.createContext<
     ContainerScrollContextValue | undefined
 >(undefined)
+
 function useContainerScrollContext() {
     const context = React.useContext(ContainerScrollContext)
     if (!context) {
@@ -47,16 +50,18 @@ function useContainerScrollContext() {
     }
     return context
 }
+
 export const ContainerScroll = ({
     children,
     className,
     style,
     ...props
-}: React.HTMLAttributes<HTMLDivElement>) => {
+}: React.HtmlHTMLAttributes<HTMLDivElement>) => {
     const scrollRef = React.useRef<HTMLDivElement>(null)
     const { scrollYProgress } = useScroll({
         target: scrollRef,
     })
+
     return (
         <ContainerScrollContext.Provider value={{ scrollYProgress }}>
             <div
@@ -66,6 +71,8 @@ export const ContainerScroll = ({
                     perspective: "1000px",
                     perspectiveOrigin: "center top",
                     transformStyle: "preserve-3d",
+                    WebkitPerspective: "1000px", // Safari support
+                    WebkitTransformStyle: "preserve-3d",
                     ...style,
                 }}
                 {...props}
@@ -76,6 +83,7 @@ export const ContainerScroll = ({
     )
 }
 ContainerScroll.displayName = "ContainerScroll"
+
 export const ContainerSticky = ({
     className,
     style,
@@ -92,6 +100,10 @@ export const ContainerSticky = ({
                 perspectiveOrigin: "center top",
                 transformStyle: "preserve-3d",
                 transformOrigin: "50% 50%",
+                WebkitPerspective: "1000px",
+                WebkitTransformStyle: "preserve-3d",
+                WebkitTransformOrigin: "50% 50%",
+                willChange: "transform", // Performance hint
                 ...style,
             }}
             {...props}
@@ -107,13 +119,23 @@ export const GalleryContainer = ({
     ...props
 }: React.HTMLAttributes<HTMLDivElement> & HTMLMotionProps<"div">) => {
     const { scrollYProgress } = useContainerScrollContext()
-    const rotateX = useTransform(scrollYProgress, [0, 0.5], [75, 0])
-    const scale = useTransform(scrollYProgress, [0.5, 0.9], [1.2, 1])
+
+    const rotateX = useTransform(
+        scrollYProgress,
+        [0, 0.5],
+        [75, 0]
+    )
+    const scale = useTransform(
+        scrollYProgress,
+        [0.5, 0.9],
+        [1.2, 1]
+    )
 
     return (
         <motion.div
             className={cn(
-                "relative grid size-full grid-cols-3 gap-2 rounded-2xl",
+                "relative grid w-full gap-2 rounded-2xl",
+                "grid-cols-3", // 3 cols on all devices as requested
                 className
             )}
             style={{
@@ -121,6 +143,11 @@ export const GalleryContainer = ({
                 scale,
                 transformStyle: "preserve-3d",
                 perspective: "1000px",
+                WebkitTransformStyle: "preserve-3d",
+                WebkitPerspective: "1000px",
+                willChange: "transform",
+                backfaceVisibility: "hidden", // Prevent flickering
+                WebkitBackfaceVisibility: "hidden",
                 ...style,
             }}
             {...props}
@@ -138,13 +165,21 @@ export const GalleryCol = ({
     ...props
 }: HTMLMotionProps<"div"> & { yRange?: string[] }) => {
     const { scrollYProgress } = useContainerScrollContext()
-    const y = useTransform(scrollYProgress, [0.5, 1], yRange)
+
+    const y = useTransform(
+        scrollYProgress,
+        [0.5, 1],
+        yRange
+    )
 
     return (
         <motion.div
-            className={cn("relative flex w-full flex-col gap-2 ", className)}
+            className={cn("relative flex w-full flex-col gap-2", className)}
             style={{
                 y,
+                willChange: "transform",
+                backfaceVisibility: "hidden",
+                WebkitBackfaceVisibility: "hidden",
                 ...style,
             }}
             {...props}
@@ -163,22 +198,33 @@ export const ContainerStagger = React.forwardRef<
             ref={ref}
             initial="hidden"
             whileInView={"visible"}
-            viewport={{ once: true || viewport?.once, ...viewport }}
-            transition={transition}
+            viewport={{
+                once: true,
+                amount: 0.3, // Trigger earlier on mobile
+                ...viewport,
+            }}
+            transition={{
+                staggerChildren: transition?.staggerChildren || 0.2,
+                ...transition,
+            }}
             {...props}
         />
     )
 })
 ContainerStagger.displayName = "ContainerStagger"
 
-export const ContainerAnimated = ({ className, transition, ...props }: HTMLMotionProps<"div">) => {
+export const ContainerAnimated = React.forwardRef<
+    HTMLDivElement,
+    HTMLMotionProps<"div">
+>(({ className, transition, ...props }, ref) => {
     return (
         <motion.div
+            ref={ref}
             className={cn(className)}
             variants={blurVariants}
-            transition={SPRING_CONFIG}
+            transition={SPRING_CONFIG || transition}
             {...props}
         />
     )
-}
+})
 ContainerAnimated.displayName = "ContainerAnimated"

@@ -18,11 +18,11 @@ export const ScrollTextSection = () => {
     const centerIndex = Math.floor(characters.length / 2);
 
     return (
-        <section className="w-full py-20 relative overflow-hidden">
-            <OrangeGlow variant="center" intensity="medium" className="opacity-50" />
+        <section className="w-full py-2 relative">
+            <OrangeGlow variant="top" intensity="medium" className="opacity-50" />
             <div
                 ref={targetRef}
-                className="relative box-border flex h-[60vh] md:h-[120vh] items-start justify-center overflow-hidden"
+                className="relative box-border flex h-[20vh] md:h-[60vh] items-start justify-center overflow-hidden"
             >
                 <div className="sticky top-1/2 -translate-y-1/2 w-full flex justify-center overflow-hidden">
                     <div

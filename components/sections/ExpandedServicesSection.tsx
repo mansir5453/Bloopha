@@ -113,7 +113,7 @@ export const ExpandedServicesSection = () => {
     <section id="services" className="relative py-20 md:py-32 px-4 md:px-6 overflow-hidden">
       <div className="max-w-7xl mx-auto relative z-20">
         <div className="text-center mb-16 md:mb-24">
-          <span className="text-indigo-600 font-medium tracking-widest uppercase text-xs md:text-sm mb-4 block">
+          <span className="text-[#F0660A] font-medium tracking-widest uppercase text-xs md:text-sm mb-4 block">
             What We Offer
           </span>
           <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-4 md:mb-6">

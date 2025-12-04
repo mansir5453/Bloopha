@@ -15,7 +15,7 @@ gsap.registerPlugin(ScrollTrigger);
 export const HeroSection = () => {
   const [titleNumber, setTitleNumber] = useState(0);
   const titles = useMemo(
-    () => ["immersive experiences", "digital realities", "future interfaces", "visual magic"],
+    () => ["Immersive Experiences", "Digital Realities", "Future Interfaces", "Visual Magic"],
     []
   );
 
@@ -60,7 +60,11 @@ export const HeroSection = () => {
       className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-4"
     >
       {/* Orange Glow Background Effect */}
-      <OrangeGlow variant="center" intensity="medium" />
+      {/* Top Glow Effect matching Footer */}
+      <div className="absolute top-0 left-0 right-0 h-[200px] bg-[radial-gradient(60%_200px_at_50%_0%,rgba(240,102,10,0.4),transparent)] pointer-events-none" />
+      <div className="absolute top-0 right-1/2 left-1/2 h-[2px] w-3/4 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-r from-transparent via-[#F0660A] to-transparent blur-[4px] opacity-100 pointer-events-none" />
+
+      {/* Orange Glow removed for seamless blending */}
 
       <div className="relative z-30 text-center px-4 sm:px-6 max-w-5xl mx-auto w-full hero-content">
         <div className="mb-3 sm:mb-4 md:mb-6 animate-fade-in-up delay-0 flex justify-center hero-logo">

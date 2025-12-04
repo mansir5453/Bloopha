@@ -5,6 +5,19 @@ import WordLoader from "@/components/ui/word-loader";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 
+const PRELOADER_WORDS = [
+  "Strategy",
+  "Design",
+  "Marketing",
+  "Branding",
+  "Analytics",
+  "Growth",
+  "Content",
+  "Social Media",
+  "SEO",
+  "Campaigns",
+];
+
 export function Preloader() {
   const [isLoading, setIsLoading] = useState(true);
   const wordLoaderRef = useRef<HTMLDivElement>(null);
@@ -35,33 +48,33 @@ export function Preloader() {
   useGSAP(() => {
     if (!isLoading) {
       const mainContent = document.getElementById("main-content");
-      
+
       if (wordLoaderRef.current) {
         gsap.killTweensOf(wordLoaderRef.current.querySelectorAll("*"));
       }
-      
+
       const tl = gsap.timeline();
-      
+
       tl.to("#preloader", {
         opacity: 0,
         duration: 0.8,
         ease: "power2.inOut",
       })
-      .to("#preloader", {
-        display: "none",
-      })
-      .fromTo(
-        mainContent,
-        { opacity: 0 },
-        {
-          opacity: 1,
-          duration: 0.8,
-          ease: "power2.out",
-          onComplete: () => {
-            document.body.style.overflow = "auto";
-          },
-        }
-      );
+        .to("#preloader", {
+          display: "none",
+        })
+        .fromTo(
+          mainContent,
+          { opacity: 0 },
+          {
+            opacity: 1,
+            duration: 0.8,
+            ease: "power2.out",
+            onComplete: () => {
+              document.body.style.overflow = "auto";
+            },
+          }
+        );
     }
   }, [isLoading]);
 
@@ -70,32 +83,18 @@ export function Preloader() {
       id="preloader"
       className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-gradient-to-br from-cream-50 via-white to-orange-50"
     >
-      <div className="mb-8 text-center">
-        <h1 
+      <div className="mb-4 text-center">
+        <h1
           className="text-6xl font-bold mb-2"
           style={{ color: "#F0660A" }}
         >
           Bloopha
         </h1>
-        <p className="text-neutral-600 text-sm tracking-widest uppercase">
-          Digital Marketing Agency
-        </p>
       </div>
 
       <div ref={wordLoaderRef}>
         <WordLoader
-          words={[
-            "Strategy",
-            "Design",
-            "Marketing",
-            "Branding",
-            "Analytics",
-            "Growth",
-            "Content",
-            "Social Media",
-            "SEO",
-            "Campaigns",
-          ]}
+          words={PRELOADER_WORDS}
           maxWords={4}
           className="text-neutral-800"
         />

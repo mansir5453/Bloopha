@@ -1,18 +1,16 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
 
 function FloatingPaths({ position }: { position: number }) {
   // Reduced from 36 to 18 paths
   const paths = Array.from({ length: 18 }, (_, i) => ({
     id: i,
-    d: `M-${380 - i * 5 * position} -${189 + i * 6}C-${380 - i * 5 * position} -${
-      189 + i * 6
-    } -${312 - i * 5 * position} ${216 - i * 6} ${152 - i * 5 * position} ${
-      343 - i * 6
-    }C${616 - i * 5 * position} ${470 - i * 6} ${684 - i * 5 * position} ${
-      875 - i * 6
-    } ${684 - i * 5 * position} ${875 - i * 6}`,
+    d: `M-${380 - i * 5 * position} -${189 + i * 6}C-${380 - i * 5 * position} -${189 + i * 6
+      } -${312 - i * 5 * position} ${216 - i * 6} ${152 - i * 5 * position} ${343 - i * 6
+      }C${616 - i * 5 * position} ${470 - i * 6} ${684 - i * 5 * position} ${875 - i * 6
+      } ${684 - i * 5 * position} ${875 - i * 6}`,
     width: 0.5 + i * 0.03,
   }));
 
@@ -50,6 +48,19 @@ function FloatingPaths({ position }: { position: number }) {
 }
 
 export function BackgroundPaths() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  if (isMobile) return null;
+
   return (
     <div className="fixed inset-0 w-full h-screen overflow-hidden pointer-events-none z-[1]">
       <FloatingPaths position={1} />

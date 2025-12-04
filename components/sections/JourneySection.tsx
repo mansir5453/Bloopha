@@ -144,13 +144,13 @@ export function JourneySection() {
   ];
 
   return (
-    <section id="journey" className="relative py-20 md:py-32 overflow-hidden">
+    <section id="journey" className="relative py-6 md:py-12 overflow-hidden">
       {/* Header Section */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12 text-center">
-        <span className="text-teal-600 font-medium tracking-widest uppercase text-xs md:text-sm mb-4 block">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-4 text-center">
+        <span className="text-[#F0660A] font-medium tracking-widest uppercase text-xs md:text-sm mb-2 block">
           Our Process
         </span>
-        <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-neutral-800 mb-6">
+        <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-neutral-800 mb-2">
           How We Work
         </h2>
         <p className="text-base md:text-lg text-neutral-600 max-w-2xl mx-auto">

@@ -13,7 +13,7 @@ export const WavyTextSection = () => {
   ];
 
   return (
-    <section className="relative min-h-[60vh] sm:min-h-[70vh] md:min-h-screen flex items-center justify-center py-12 sm:py-16 md:py-32 px-4 overflow-hidden">
+    <section className="relative min-h-[60vh] sm:min-h-[70vh] md:min-h-screen flex items-center justify-center py-4 sm:py-16 md:py-32 px-4 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <WavyBlock className="space-y-1 sm:space-y-2 md:space-y-4">
           {lines.map((line, index) => (

@@ -44,11 +44,11 @@ export const TechStackSection = () => {
     const centerIndex = Math.floor(icons.length / 2);
 
     return (
-        <section className="w-full py-20 overflow-hidden relative">
-            <OrangeGlow variant="center" intensity="medium" className="opacity-50" />
+        <section className="w-full py-5 overflow-hidden relative">
+            {/* OrangeGlow removed */}
             <div
                 ref={targetRef}
-                className="relative box-border flex min-h-[60vh] md:h-[120vh] flex-col items-center justify-start pt-10 md:pt-20 gap-[2vw]"
+                className="relative box-border flex min-h-[30vh] md:h-[60vh] flex-col items-center justify-start pt-0 gap-[2vw]"
             >
                 <div className="sticky top-1/2 -translate-y-1/2 flex flex-col items-center gap-8 md:gap-12 w-full px-4">
                     <p className="flex items-center justify-center gap-2 sm:gap-3 text-lg sm:text-3xl font-medium tracking-tight text-black whitespace-nowrap">

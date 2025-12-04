@@ -13,15 +13,17 @@ interface WordLoaderProps {
   maxWords?: number;
 }
 
+const DEFAULT_WORDS = [
+  "branding",
+  "design",
+  "development",
+  "ecommerce",
+  "mobile apps",
+  "packaging",
+];
+
 const WordLoader: React.FC<WordLoaderProps> = ({
-  words = [
-    "branding",
-    "design",
-    "development",
-    "ecommerce",
-    "mobile apps",
-    "packaging",
-  ],
+  words = DEFAULT_WORDS,
   className,
   maxWords = 4,
 }) => {
@@ -32,7 +34,8 @@ const WordLoader: React.FC<WordLoaderProps> = ({
   useEffect(() => {
     const shuffled = [...words].sort(() => Math.random() - 0.5);
     setSelectedWords(shuffled.slice(0, maxWords));
-  }, [words, maxWords]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useGSAP(
     () => {

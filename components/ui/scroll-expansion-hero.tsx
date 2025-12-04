@@ -1,8 +1,8 @@
 'use client';
 
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import Image from 'next/image';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 
 interface ScrollExpandMediaProps {
     mediaType?: 'video' | 'image';
@@ -28,6 +28,17 @@ const ScrollExpandMedia = ({
     children,
 }: ScrollExpandMediaProps) => {
     const sectionRef = useRef<HTMLDivElement>(null);
+    const containerRef = useRef<HTMLDivElement>(null);
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const checkMobile = () => {
+            setIsMobile(window.innerWidth < 768);
+        };
+        checkMobile();
+        window.addEventListener("resize", checkMobile);
+        return () => window.removeEventListener("resize", checkMobile);
+    }, []);
 
     const { scrollYProgress } = useScroll({
         target: sectionRef,
@@ -39,8 +50,16 @@ const ScrollExpandMedia = ({
     // 0.6 -> 0.8: Hold full screen, fade in content
     // 0.8 -> 1.0: Scroll away
 
-    const width = useTransform(scrollYProgress, [0, 0.6], ["300px", "100vw"]);
-    const height = useTransform(scrollYProgress, [0, 0.6], ["400px", "100vh"]);
+    const width = useTransform(
+        scrollYProgress,
+        [0, 0.6],
+        [isMobile ? "80vw" : "300px", "100vw"]
+    );
+    const height = useTransform(
+        scrollYProgress,
+        [0, 0.6],
+        [isMobile ? "45vw" : "400px", isMobile ? "56vw" : "100vh"]
+    );
     const borderRadius = useTransform(scrollYProgress, [0, 0.6], ["16px", "0px"]);
 
     const bgOpacity = useTransform(scrollYProgress, [0, 0.4], [1, 0]);
@@ -55,9 +74,25 @@ const ScrollExpandMedia = ({
     const firstWord = title ? title.split(' ')[0] : '';
     const restOfTitle = title ? title.split(' ').slice(1).join(' ') : '';
 
+    const videoRef = useRef<HTMLVideoElement>(null);
+    const isInView = useInView(containerRef, { amount: 0.4 });
+
+    useEffect(() => {
+        if (videoRef.current) {
+            if (isInView) {
+                videoRef.current.currentTime = 0;
+                videoRef.current.play().catch(() => {
+                    // Handle autoplay restrictions if needed
+                });
+            } else {
+                videoRef.current.pause();
+            }
+        }
+    }, [isInView]);
+
     return (
-        <div ref={sectionRef} className="relative h-[300vh] w-full">
-            <div className="sticky top-0 h-screen w-full overflow-hidden flex flex-col items-center justify-center">
+        <div ref={sectionRef} className={`relative w-full ${isMobile ? 'h-[200vh]' : 'h-[300vh]'}`}>
+            <div ref={containerRef} className="sticky top-0 h-screen w-full overflow-hidden flex flex-col items-center justify-center">
 
                 {/* Background Image (Fades out) */}
                 <motion.div
@@ -80,6 +115,7 @@ const ScrollExpandMedia = ({
                         width,
                         height,
                         borderRadius,
+                        willChange: "width, height, border-radius",
                     }}
                     className="relative z-10 overflow-hidden shadow-2xl"
                 >
@@ -97,10 +133,10 @@ const ScrollExpandMedia = ({
                             />
                         ) : (
                             <video
+                                ref={videoRef}
                                 src={mediaSrc}
                                 poster={posterSrc}
                                 className="w-full h-full object-cover"
-                                autoPlay
                                 muted
                                 loop
                                 playsInline
@@ -119,18 +155,18 @@ const ScrollExpandMedia = ({
                 </motion.div>
 
                 {/* Title Text (Splits and moves away) */}
-                <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-20">
+                <div className="absolute inset-0 flex items-start pt-24 md:pt-0 md:items-center justify-center pointer-events-none z-20">
                     <div className={`flex flex-col items-center gap-4 ${textBlend ? 'mix-blend-difference text-white' : ''}`}>
-                        <div className="flex gap-3 md:gap-6 overflow-hidden">
+                        <div className="flex gap-2 md:gap-6 overflow-hidden">
                             <motion.h2
                                 style={{ x: textXLeft, opacity: textOpacity }}
-                                className="text-4xl md:text-6xl lg:text-7xl font-bold text-[#F0660A]"
+                                className={`text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold ${textBlend ? 'text-white' : 'text-[#F0660A]'}`}
                             >
                                 {firstWord}
                             </motion.h2>
                             <motion.h2
                                 style={{ x: textXRight, opacity: textOpacity }}
-                                className="text-4xl md:text-6xl lg:text-7xl font-bold text-[#F0660A]"
+                                className={`text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold ${textBlend ? 'text-white' : 'text-[#F0660A]'}`}
                             >
                                 {restOfTitle}
                             </motion.h2>
@@ -140,8 +176,8 @@ const ScrollExpandMedia = ({
                             style={{ opacity: textOpacity }}
                             className="flex flex-col items-center gap-2"
                         >
-                            {date && <p className="text-[#F0660A] text-xl md:text-2xl font-light">{date}</p>}
-                            {scrollToExpand && <p className="text-[#F0660A] text-sm uppercase tracking-widest">{scrollToExpand}</p>}
+                            {date && <p className={`${textBlend ? 'text-white' : 'text-[#F0660A]'} text-xl md:text-2xl font-light`}>{date}</p>}
+                            {scrollToExpand && <p className={`${textBlend ? 'text-white' : 'text-[#F0660A]'} text-sm uppercase tracking-widest`}>{scrollToExpand}</p>}
                         </motion.div>
                     </div>
                 </div>

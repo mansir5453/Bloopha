@@ -31,7 +31,7 @@ export const OrangeGlow = React.forwardRef<HTMLDivElement, OrangeGlowProps>(
         {/* Primary orange glow */}
         <div
           className={cn(
-            "absolute left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full blur-[120px]",
+            "absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] max-w-full h-[600px] rounded-full blur-[120px]",
             intensityMap[intensity]
           )}
           style={{
@@ -41,7 +41,7 @@ export const OrangeGlow = React.forwardRef<HTMLDivElement, OrangeGlowProps>(
         {/* Secondary amber glow */}
         <div
           className={cn(
-            "absolute left-1/2 -translate-x-1/2 w-[400px] h-[400px] rounded-full blur-[100px]",
+            "absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] max-w-full h-[400px] rounded-full blur-[100px]",
             intensityMap[intensity]
           )}
           style={{

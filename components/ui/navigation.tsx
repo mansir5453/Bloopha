@@ -199,7 +199,7 @@ export const Navigation: React.FC = () => {
                     style={{
                       fontSize: "15px",
                       fontWeight: 600,
-                      color: "#1a1a1a",
+                      color: "#F0660A",
                       letterSpacing: "0.3px",
                       whiteSpace: "nowrap",
                       fontFamily:
@@ -240,8 +240,8 @@ export const Navigation: React.FC = () => {
                       transition-all duration-200 cursor-pointer
                       whitespace-nowrap
                       ${isActive
-                        ? "bg-white/20 text-gray-900 font-semibold scale-105"
-                        : "bg-transparent text-gray-700 hover:bg-white/10 hover:text-gray-900 scale-100"
+                        ? "bg-white/20 text-[#F0660A] font-semibold scale-105"
+                        : "bg-transparent text-[#F0660A]/80 hover:bg-white/10 hover:text-[#F0660A] scale-100"
                       }
                     `}
                     style={{
