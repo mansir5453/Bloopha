@@ -3,9 +3,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { Loader2 } from "lucide-react";
-
-
 import WordLoader from "@/components/ui/word-loader";
 
 const PRELOADER_WORDS = [
@@ -29,6 +26,28 @@ export function Preloader() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const wordLoaderRef = useRef<HTMLDivElement>(null);
 
+  // Master Timer: Force close preloader after 6 seconds no matter what
+  useEffect(() => {
+    const masterTimer = setTimeout(() => {
+      setIsLoading(false);
+    }, 6000);
+
+    return () => clearTimeout(masterTimer);
+  }, []);
+
+  // Fallback Timer: If video doesn't start in 2.5s, show fallback
+  useEffect(() => {
+    if (isVideoPlaying) return;
+
+    const fallbackTimer = setTimeout(() => {
+      if (!isVideoPlaying) {
+        setShowFallback(true);
+      }
+    }, 2500);
+
+    return () => clearTimeout(fallbackTimer);
+  }, [isVideoPlaying]);
+
   useEffect(() => {
     if (videoRef.current) {
       // Ensure muted is set for autoplay policies
@@ -43,34 +62,13 @@ export function Preloader() {
     }
   }, []);
 
-  // 1. Fallback Timer: If video doesn't play in 8s, switch to WordLoader
-  useEffect(() => {
-    const fallbackTimer = setTimeout(() => {
-      if (!isVideoPlaying) {
-        setShowFallback(true);
-      }
-    }, 8000);
-
-    return () => clearTimeout(fallbackTimer);
-  }, [isVideoPlaying]);
-
   const handleVideoEnd = () => {
-    if (!showFallback) {
-      setIsLoading(false);
-    }
+    setIsLoading(false);
   };
 
-  const handleVideoPlay = () => {
-    if (!showFallback) {
+  const handleVideoUpdate = () => {
+    if (!showFallback && !isVideoPlaying) {
       setIsVideoPlaying(true);
-    }
-  };
-
-  // Treat canPlay as a sign of life to prevent fallback if it's just about to start
-  const handleCanPlay = () => {
-    // We could set isVideoPlaying here, but let's just ensure we try to play
-    if (videoRef.current && videoRef.current.paused) {
-      videoRef.current.play().catch(console.error);
     }
   };
 
@@ -150,8 +148,8 @@ export function Preloader() {
             playsInline
             preload="auto"
             onEnded={handleVideoEnd}
-            onPlaying={handleVideoPlay}
-            onCanPlay={handleCanPlay}
+            onTimeUpdate={handleVideoUpdate}
+            onPlaying={handleVideoUpdate}
             onError={handleVideoError}
             className="w-full h-full object-contain"
           />
