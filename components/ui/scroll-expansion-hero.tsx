@@ -91,7 +91,7 @@ const ScrollExpandMedia = ({
     }, [isInView]);
 
     return (
-        <div ref={sectionRef} className={`relative w-full ${isMobile ? 'h-[200vh]' : 'h-[300vh]'}`}>
+        <div ref={sectionRef} className={`relative w-full ${isMobile ? 'h-[150vh]' : 'h-[300vh]'}`}>
             <div ref={containerRef} className="sticky top-0 h-screen w-full overflow-hidden flex flex-col items-center justify-center">
 
                 {/* Background Image (Fades out) */}

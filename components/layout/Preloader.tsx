@@ -1,9 +1,12 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import WordLoader from "@/components/ui/word-loader";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
+import { Loader2 } from "lucide-react";
+
+
+import WordLoader from "@/components/ui/word-loader";
 
 const PRELOADER_WORDS = [
   "Strategy",
@@ -20,49 +23,84 @@ const PRELOADER_WORDS = [
 
 export function Preloader() {
   const [isLoading, setIsLoading] = useState(true);
+  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+  const [showFallback, setShowFallback] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const wordLoaderRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    document.body.style.overflow = "hidden";
+    if (videoRef.current) {
+      // Ensure muted is set for autoplay policies
+      videoRef.current.muted = true;
 
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 3000);
-
-    const handleLoad = () => {
-      setTimeout(() => setIsLoading(false), 3000);
-    };
-
-    if (document.readyState === "complete") {
-      handleLoad();
-    } else {
-      window.addEventListener("load", handleLoad);
+      const playPromise = videoRef.current.play();
+      if (playPromise !== undefined) {
+        playPromise.catch((error) => {
+          console.error("Video play failed:", error);
+        });
+      }
     }
-
-    return () => {
-      clearTimeout(timer);
-      window.removeEventListener("load", handleLoad);
-    };
   }, []);
+
+  // 1. Fallback Timer: If video doesn't play in 8s, switch to WordLoader
+  useEffect(() => {
+    const fallbackTimer = setTimeout(() => {
+      if (!isVideoPlaying) {
+        setShowFallback(true);
+      }
+    }, 8000);
+
+    return () => clearTimeout(fallbackTimer);
+  }, [isVideoPlaying]);
+
+  const handleVideoEnd = () => {
+    if (!showFallback) {
+      setIsLoading(false);
+    }
+  };
+
+  const handleVideoPlay = () => {
+    if (!showFallback) {
+      setIsVideoPlaying(true);
+    }
+  };
+
+  // Treat canPlay as a sign of life to prevent fallback if it's just about to start
+  const handleCanPlay = () => {
+    // We could set isVideoPlaying here, but let's just ensure we try to play
+    if (videoRef.current && videoRef.current.paused) {
+      videoRef.current.play().catch(console.error);
+    }
+  };
+
+  const handleVideoError = () => {
+    console.error("Video load error");
+    setShowFallback(true);
+  };
 
   useGSAP(() => {
     if (!isLoading) {
       const mainContent = document.getElementById("main-content");
 
+      // Kill WordLoader animations if they are running
       if (wordLoaderRef.current) {
         gsap.killTweensOf(wordLoaderRef.current.querySelectorAll("*"));
       }
 
       const tl = gsap.timeline();
 
-      tl.to("#preloader", {
+      tl.to(containerRef.current, {
         opacity: 0,
         duration: 0.8,
         ease: "power2.inOut",
+        onComplete: () => {
+          if (containerRef.current) {
+            containerRef.current.style.display = "none";
+          }
+          document.body.style.overflow = "auto";
+        }
       })
-        .to("#preloader", {
-          display: "none",
-        })
         .fromTo(
           mainContent,
           { opacity: 0 },
@@ -70,35 +108,55 @@ export function Preloader() {
             opacity: 1,
             duration: 0.8,
             ease: "power2.out",
-            onComplete: () => {
-              document.body.style.overflow = "auto";
-            },
-          }
+          },
+          "-=0.5"
         );
     }
   }, [isLoading]);
 
   return (
     <div
+      ref={containerRef}
       id="preloader"
-      className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-gradient-to-br from-cream-50 via-white to-orange-50"
+      className="fixed inset-0 z-[9999] flex items-center justify-center bg-white"
     >
-      <div className="mb-4 text-center">
-        <h1
-          className="text-6xl font-bold mb-2"
-          style={{ color: "#F0660A" }}
-        >
-          Bloopha
-        </h1>
-      </div>
-
-      <div ref={wordLoaderRef}>
-        <WordLoader
-          words={PRELOADER_WORDS}
-          maxWords={4}
-          className="text-neutral-800"
-        />
-      </div>
+      {showFallback ? (
+        // Fallback: Word Loader
+        <div className="flex flex-col items-center justify-center w-full max-w-md px-4">
+          <div className="mb-8 text-center">
+            <h1
+              className="text-4xl sm:text-6xl font-bold mb-2"
+              style={{ color: "#F0660A" }}
+            >
+              Bloopha
+            </h1>
+          </div>
+          <div ref={wordLoaderRef} className="w-full">
+            <WordLoader
+              words={PRELOADER_WORDS}
+              maxWords={4}
+              className="text-neutral-800"
+            />
+          </div>
+        </div>
+      ) : (
+        // Primary: Video
+        <>
+          <video
+            ref={videoRef}
+            src="/videos/scroll-video.mp4"
+            autoPlay
+            muted
+            playsInline
+            preload="auto"
+            onEnded={handleVideoEnd}
+            onPlaying={handleVideoPlay}
+            onCanPlay={handleCanPlay}
+            onError={handleVideoError}
+            className="w-full h-full object-contain"
+          />
+        </>
+      )}
     </div>
   );
 }

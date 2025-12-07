@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useRef } from "react";
-import { useScroll } from "framer-motion";
+import { useScroll, useSpring } from "framer-motion";
 import { ScrollIconItem } from "@/components/ui/scroll-icon-item";
 import { Code, Cpu, Globe, Zap, Layers, Smartphone, Database, Cloud } from "lucide-react";
 import { OrangeGlow } from "@/components/ui/orange-glow";
@@ -22,12 +22,22 @@ const Bracket = ({ className }: { className: string }) => {
     );
 };
 
+import { useIsMobile } from "@/hooks/use-mobile";
+
 export const TechStackSection = () => {
     const targetRef = useRef<HTMLDivElement | null>(null);
+    const isMobile = useIsMobile();
 
     const { scrollYProgress } = useScroll({
         target: targetRef,
         offset: ["start end", "end start"],
+    });
+
+    const smoothProgress = useSpring(scrollYProgress, {
+        stiffness: 70,
+        damping: 25,
+        mass: 1,
+        restDelta: 0.001
     });
 
     const icons = [
@@ -48,7 +58,7 @@ export const TechStackSection = () => {
             {/* OrangeGlow removed */}
             <div
                 ref={targetRef}
-                className="relative box-border flex min-h-[30vh] md:h-[60vh] flex-col items-center justify-start pt-0 gap-[2vw]"
+                className="relative box-border flex min-h-[40vh] md:h-[60vh] flex-col items-center justify-start pt-0 gap-[2vw]"
             >
                 <div className="sticky top-1/2 -translate-y-1/2 flex flex-col items-center gap-8 md:gap-12 w-full px-4">
                     <p className="flex items-center justify-center gap-2 sm:gap-3 text-lg sm:text-3xl font-medium tracking-tight text-black whitespace-nowrap">
@@ -65,15 +75,25 @@ export const TechStackSection = () => {
                             perspective: "500px",
                         }}
                     >
-                        {icons.map((icon, index) => (
-                            <ScrollIconItem
-                                key={index}
-                                icon={icon}
-                                index={index}
-                                centerIndex={centerIndex}
-                                scrollYProgress={scrollYProgress}
-                            />
-                        ))}
+                        {isMobile ? (
+                            // Mobile: Simple grid with fade-in
+                            icons.map((icon, index) => (
+                                <div key={index} className="flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20">
+                                    {icon}
+                                </div>
+                            ))
+                        ) : (
+                            // Desktop: Scroll physics
+                            icons.map((icon, index) => (
+                                <ScrollIconItem
+                                    key={index}
+                                    icon={icon}
+                                    index={index}
+                                    centerIndex={centerIndex}
+                                    scrollYProgress={smoothProgress}
+                                />
+                            ))
+                        )}
                     </div>
                 </div>
             </div>

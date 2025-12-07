@@ -33,6 +33,9 @@ const IMAGES_3 = [
     "https://images.unsplash.com/photo-1608875004752-2fdb6a39ba4c?q=80&w=2340&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
 ];
 
+import { Dialog, DialogContent, DialogTrigger, DialogTitle } from "@/components/ui/dialog";
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
+
 export const MixedGallerySection = () => {
     return (
         <section id="work" className="w-full relative">
@@ -50,43 +53,100 @@ export const MixedGallerySection = () => {
                     }}
                 />
 
-                <ContainerScroll className="relative h-[120vh] sm:h-[250vh]">
-                    <ContainerSticky className="h-[100dvh] sticky top-0 flex items-center justify-center">
+                <ContainerScroll className="relative h-auto min-h-0 md:min-h-[50vh] md:h-[250vh]">
+                    <ContainerSticky className="h-auto min-h-0 md:h-[100dvh] relative md:sticky top-auto md:top-0 flex items-center justify-center">
                         <GalleryContainer className="">
                             <GalleryCol yRange={["-10%", "2%"]} className="-mt-2">
                                 {IMAGES_1.map((imageUrl, index) => (
-                                    <NextImage
-                                        key={index}
-                                        className="aspect-video block h-auto max-h-full w-full rounded-md object-cover shadow"
-                                        src={imageUrl}
-                                        alt="gallery item"
-                                        width={800}
-                                        height={450}
-                                    />
+                                    <Dialog key={index}>
+                                        <DialogTrigger asChild>
+                                            <div className="cursor-pointer transition-transform hover:scale-[1.02]">
+                                                <NextImage
+                                                    className="aspect-video block h-auto max-h-full w-full rounded-md object-cover shadow"
+                                                    src={imageUrl}
+                                                    alt="gallery item"
+                                                    width={800}
+                                                    height={450}
+                                                />
+                                            </div>
+                                        </DialogTrigger>
+                                        <DialogContent className="max-w-[95vw] max-h-[95vh] w-full h-full p-0 bg-transparent border-none shadow-none flex items-center justify-center">
+                                            <VisuallyHidden>
+                                                <DialogTitle>Gallery Image Preview</DialogTitle>
+                                            </VisuallyHidden>
+                                            <div className="relative w-full h-full flex items-center justify-center">
+                                                <NextImage
+                                                    src={imageUrl}
+                                                    alt="gallery item full"
+                                                    fill
+                                                    className="object-contain"
+                                                    quality={100}
+                                                />
+                                            </div>
+                                        </DialogContent>
+                                    </Dialog>
                                 ))}
                             </GalleryCol>
                             <GalleryCol className="mt-[-10%] sm:mt-[-50%]" yRange={["15%", "5%"]}>
                                 {IMAGES_2.map((imageUrl, index) => (
-                                    <NextImage
-                                        key={index}
-                                        className="aspect-video block h-auto max-h-full w-full rounded-md object-cover shadow"
-                                        src={imageUrl}
-                                        alt="gallery item"
-                                        width={800}
-                                        height={450}
-                                    />
+                                    <Dialog key={index}>
+                                        <DialogTrigger asChild>
+                                            <div className="cursor-pointer transition-transform hover:scale-[1.02]">
+                                                <NextImage
+                                                    className="aspect-video block h-auto max-h-full w-full rounded-md object-cover shadow"
+                                                    src={imageUrl}
+                                                    alt="gallery item"
+                                                    width={800}
+                                                    height={450}
+                                                />
+                                            </div>
+                                        </DialogTrigger>
+                                        <DialogContent className="max-w-[95vw] max-h-[95vh] w-full h-full p-0 bg-transparent border-none shadow-none flex items-center justify-center">
+                                            <VisuallyHidden>
+                                                <DialogTitle>Gallery Image Preview</DialogTitle>
+                                            </VisuallyHidden>
+                                            <div className="relative w-full h-full flex items-center justify-center">
+                                                <NextImage
+                                                    src={imageUrl}
+                                                    alt="gallery item full"
+                                                    fill
+                                                    className="object-contain"
+                                                    quality={100}
+                                                />
+                                            </div>
+                                        </DialogContent>
+                                    </Dialog>
                                 ))}
                             </GalleryCol>
                             <GalleryCol yRange={["-10%", "2%"]} className="-mt-2">
                                 {IMAGES_3.map((imageUrl, index) => (
-                                    <NextImage
-                                        key={index}
-                                        className="aspect-video block h-auto max-h-full w-full rounded-md object-cover shadow"
-                                        src={imageUrl}
-                                        alt="gallery item"
-                                        width={800}
-                                        height={450}
-                                    />
+                                    <Dialog key={index}>
+                                        <DialogTrigger asChild>
+                                            <div className="cursor-pointer transition-transform hover:scale-[1.02]">
+                                                <NextImage
+                                                    className="aspect-video block h-auto max-h-full w-full rounded-md object-cover shadow"
+                                                    src={imageUrl}
+                                                    alt="gallery item"
+                                                    width={800}
+                                                    height={450}
+                                                />
+                                            </div>
+                                        </DialogTrigger>
+                                        <DialogContent className="max-w-[95vw] max-h-[95vh] w-full h-full p-0 bg-transparent border-none shadow-none flex items-center justify-center">
+                                            <VisuallyHidden>
+                                                <DialogTitle>Gallery Image Preview</DialogTitle>
+                                            </VisuallyHidden>
+                                            <div className="relative w-full h-full flex items-center justify-center">
+                                                <NextImage
+                                                    src={imageUrl}
+                                                    alt="gallery item full"
+                                                    fill
+                                                    className="object-contain"
+                                                    quality={100}
+                                                />
+                                            </div>
+                                        </DialogContent>
+                                    </Dialog>
                                 ))}
                             </GalleryCol>
                         </GalleryContainer>

@@ -8,12 +8,15 @@ interface AuroraBackgroundProps extends React.HTMLProps<HTMLDivElement> {
   showRadialGradient?: boolean;
 }
 
+import { useIsMobile } from "@/hooks/use-mobile";
+
 export const AuroraBackground = ({
   className,
   children,
   showRadialGradient = true,
   ...props
 }: AuroraBackgroundProps) => {
+  const isMobile = useIsMobile();
   return (
     <main>
       <div
@@ -49,7 +52,7 @@ export const AuroraBackground = ({
               backgroundSize: '300% 200%, 200% 100%',
               backgroundPosition: '50% 50%, 50% 50%',
               filter: 'blur(10px)',
-              maskImage: showRadialGradient 
+              maskImage: showRadialGradient
                 ? 'radial-gradient(ellipse at 100% 0%, black 10%, transparent 70%)'
                 : undefined,
             }}
@@ -76,13 +79,13 @@ export const AuroraBackground = ({
                   )
                 `,
                 backgroundSize: '200% 100%',
-                backgroundAttachment: 'fixed',
+                backgroundAttachment: isMobile ? 'scroll' : 'fixed',
                 mixBlendMode: 'difference',
               }}
             />
           </div>
         </div>
-        
+
         {/* Content */}
         {children}
       </div>
