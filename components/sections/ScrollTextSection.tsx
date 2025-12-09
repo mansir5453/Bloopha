@@ -50,7 +50,7 @@ export const ScrollTextSection = () => {
         <section ref={containerRef} className="w-full py-2 relative">
             <OrangeGlow variant="top" intensity="medium" className="opacity-50" />
             <div className="relative box-border flex h-[20vh] md:h-[60vh] items-start justify-center overflow-hidden">
-                <div className="sticky top-1/2 -translate-y-1/2 w-full flex justify-center overflow-hidden">
+                <div className="relative md:sticky md:top-1/2 md:-translate-y-1/2 w-full flex justify-center overflow-hidden">
                     <div
                         ref={textRef}
                         className="w-full max-w-7xl text-center text-3xl sm:text-6xl md:text-8xl font-bold uppercase tracking-tighter text-[#F0660A] whitespace-nowrap perspective-500"

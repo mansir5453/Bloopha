@@ -10,7 +10,7 @@ import {
     GalleryCol,
     GalleryContainer,
 } from "@/components/ui/animated-gallery";
-import StickyScroll from "@/components/ui/sticky-scroll";
+
 import { ArrowRight, X } from "lucide-react";
 import { LiquidButton } from "@/components/ui/liquid-glass-button";
 
@@ -40,7 +40,7 @@ import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 
 export const MixedGallerySection = () => {
     return (
-        <section id="work" className="w-full relative hidden md:block">
+        <section id="work" className="w-full relative hidden md:block z-30 my-24 md:my-48">
             {/* Part 1: 3D Animated Gallery */}
             <div className="relative pt-0 pb-0">
                 <div
@@ -53,8 +53,8 @@ export const MixedGallerySection = () => {
                     }}
                 />
 
-                <ContainerScroll className="relative h-auto min-h-0 md:min-h-[50vh] md:h-[250vh]">
-                    <ContainerSticky className="h-auto min-h-0 md:h-[100dvh] relative md:sticky top-auto md:top-0 flex items-center justify-center">
+                <ContainerScroll className="relative h-auto min-h-0 md:min-h-[50vh] md:h-[320vh]">
+                    <ContainerSticky className="h-auto min-h-0 md:h-[100dvh] relative md:sticky top-auto md:top-0 flex items-center justify-center overflow-visible">
                         <GalleryContainer className="">
                             {/* COLUMN 1 */}
                             <GalleryCol yRange={["-10%", "2%"]} className="-mt-2">

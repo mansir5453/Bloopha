@@ -10,7 +10,7 @@ import {
     GalleryCol,
     GalleryContainer,
 } from "@/components/ui/animated-gallery";
-import StickyScroll from "@/components/ui/sticky-scroll";
+
 import { ArrowRight, X } from "lucide-react";
 import { LiquidButton } from "@/components/ui/liquid-glass-button";
 
@@ -54,6 +54,10 @@ const COL_3 = [
         src: "/images/pot/2.png",
         alt: "Brand Asset 2",
     },
+    {
+        src: "/images/pot/1.png",
+        alt: "Brand Asset 1",
+    },
 ];
 
 import { Dialog, DialogContent, DialogTrigger, DialogTitle, DialogClose } from "@/components/ui/dialog";
@@ -61,7 +65,7 @@ import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 
 export const ShowcaseSection = () => {
     return (
-        <section id="work" className="w-full relative mt-0 md:mt-48 hidden md:block">
+        <section id="work" className="w-full relative mt-0 md:mt-48 hidden md:block z-30">
             {/* Part 1: 3D Animated Gallery (Reversed) */}
             <div className="relative pt-0 pb-0">
                 <div
@@ -79,7 +83,7 @@ export const ShowcaseSection = () => {
                         {/* REVERSED ANIMATION: Starts flat (0), tilts to 75 */}
                         <GalleryContainer reverse={true} className="">
                             {/* COLUMN 1 */}
-                            <GalleryCol yRange={["-10%", "2%"]} className="-mt-2">
+                            <GalleryCol yRange={["0%", "12%"]} className="-mt-2">
                                 {COL_1.map((item, index) => (
                                     <GalleryItem key={index} item={item} />
                                 ))}
@@ -93,7 +97,7 @@ export const ShowcaseSection = () => {
                             </GalleryCol>
 
                             {/* COLUMN 3 */}
-                            <GalleryCol yRange={["-10%", "2%"]} className="-mt-2">
+                            <GalleryCol yRange={["0%", "12%"]} className="-mt-2">
                                 {COL_3.map((item, index) => (
                                     <GalleryItem key={index} item={item} />
                                 ))}
@@ -111,7 +115,7 @@ const GalleryItem = ({ item }: { item: any }) => {
     return (
         <Dialog>
             <DialogTrigger asChild>
-                <div className="cursor-pointer transition-transform hover:scale-[1.02] w-full">
+                <div className="cursor-pointer transition-transform hover:scale-[1.02] w-[85%] mx-auto">
                     {item.isIconGrid ? (
                         <div className="w-full bg-neutral-100/50 p-4 grid grid-cols-2 gap-3 items-center justify-center border border-black/5 rounded-md aspect-square shadow-sm backdrop-blur-sm">
                             {item.icons?.map((iconSrc: string, i: number) => (

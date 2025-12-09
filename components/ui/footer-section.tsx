@@ -38,7 +38,7 @@ const footerLinks: FooterSection[] = [
         label: "Connect",
         links: [
             { title: "Twitter", href: "#", icon: TwitterIcon },
-            { title: "Instagram", href: "#", icon: InstagramIcon },
+            { title: "Instagram", href: "https://www.instagram.com/thebloopha?igsh=MWxwbmd6ZzhvanBwMw==", icon: InstagramIcon },
             { title: "LinkedIn", href: "#", icon: LinkedinIcon },
             { title: "Facebook", href: "#", icon: FacebookIcon },
         ],
@@ -76,6 +76,8 @@ export function Footer() {
                                         <li key={link.title}>
                                             <a
                                                 href={link.href}
+                                                target={link.href.startsWith("http") ? "_blank" : undefined}
+                                                rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
                                                 className="text-gray-600 hover:text-[#F0660A] inline-flex items-center transition-colors duration-300"
                                             >
                                                 {link.icon && <link.icon className="me-2 size-4" />}
