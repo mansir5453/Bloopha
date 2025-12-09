@@ -5,7 +5,7 @@ import { Timeline } from "@/components/ui/timeline";
 export function JourneySection() {
   const data = [
     {
-      id: "discovery", // ✅ Added unique ID
+      id: "discovery",
       title: "Discovery",
       content: (
         <div>
@@ -19,20 +19,20 @@ export function JourneySection() {
             perfectly aligned with your vision.
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div className="bg-white/50 p-4 rounded-lg">
-              <p className="font-bold text-2xl text-neutral-800 mb-1">100%</p>
-              <p className="text-sm text-neutral-600">Client-Focused</p>
+            <div className="bg-white/20 backdrop-blur-md border border-white/30 p-4 rounded-xl shadow-sm">
+              <p className="font-bold text-2xl text-[#F0660A] mb-1">100%</p>
+              <p className="text-sm text-neutral-700 font-medium">Client-Focused</p>
             </div>
-            <div className="bg-white/50 p-4 rounded-lg">
-              <p className="font-bold text-2xl text-neutral-800 mb-1">360°</p>
-              <p className="text-sm text-neutral-600">Brand Analysis</p>
+            <div className="bg-white/20 backdrop-blur-md border border-white/30 p-4 rounded-xl shadow-sm">
+              <p className="font-bold text-2xl text-[#F0660A] mb-1">Deep</p>
+              <p className="text-sm text-neutral-700 font-medium">Market Analysis</p>
             </div>
           </div>
         </div>
       ),
     },
     {
-      id: "strategy", // ✅ Added unique ID
+      id: "strategy",
       title: "Strategy",
       content: (
         <div>
@@ -45,8 +45,8 @@ export function JourneySection() {
             campaign blueprints, and performance KPIs designed to maximize
             ROI and drive measurable results.
           </p>
-          <ul className="list-disc list-inside space-y-2 text-neutral-700">
-            <li>Comprehensive market research & competitor analysis</li>
+          <ul className="list-disc list-inside space-y-2 text-neutral-700 marker:text-[#F0660A]">
+            <li>Audience segmentation & persona building</li>
             <li>Custom content calendar & campaign roadmap</li>
             <li>Performance KPIs & success metrics</li>
             <li>Budget optimization & resource allocation</li>
@@ -55,7 +55,7 @@ export function JourneySection() {
       ),
     },
     {
-      id: "execution", // ✅ Added unique ID
+      id: "execution",
       title: "Execution",
       content: (
         <div>
@@ -69,28 +69,28 @@ export function JourneySection() {
             drive meaningful engagement across all channels.
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div className="bg-white/50 p-4 rounded-lg">
-              <p className="font-semibold text-neutral-800">SEO</p>
-              <p className="text-sm text-neutral-600">Optimization</p>
+            <div className="bg-white/20 backdrop-blur-md border border-white/30 p-4 rounded-xl shadow-sm">
+              <p className="font-semibold text-neutral-900">High-End</p>
+              <p className="text-sm text-neutral-700">Production</p>
             </div>
-            <div className="bg-white/50 p-4 rounded-lg">
-              <p className="font-semibold text-neutral-800">Social</p>
-              <p className="text-sm text-neutral-600">Campaigns</p>
+            <div className="bg-white/20 backdrop-blur-md border border-white/30 p-4 rounded-xl shadow-sm">
+              <p className="font-semibold text-neutral-900">Multi-Channel</p>
+              <p className="text-sm text-neutral-700">Campaigns</p>
             </div>
-            <div className="bg-white/50 p-4 rounded-lg">
-              <p className="font-semibold text-neutral-800">Content</p>
-              <p className="text-sm text-neutral-600">Creation</p>
+            <div className="bg-white/20 backdrop-blur-md border border-white/30 p-4 rounded-xl shadow-sm">
+              <p className="font-semibold text-neutral-900">Creative</p>
+              <p className="text-sm text-neutral-700">Direction</p>
             </div>
-            <div className="bg-white/50 p-4 rounded-lg">
-              <p className="font-semibold text-neutral-800">Paid Ads</p>
-              <p className="text-sm text-neutral-600">Management</p>
+            <div className="bg-white/20 backdrop-blur-md border border-white/30 p-4 rounded-xl shadow-sm">
+              <p className="font-semibold text-neutral-900">Targeted</p>
+              <p className="text-sm text-neutral-700">Ad Management</p>
             </div>
           </div>
         </div>
       ),
     },
     {
-      id: "optimization", // ✅ Added unique ID
+      id: "optimization",
       title: "Optimization",
       content: (
         <div>
@@ -102,9 +102,9 @@ export function JourneySection() {
             performance metrics, analyzes data insights, and refines strategies
             to ensure sustained growth and exceptional results month after month.
           </p>
-          <div className="bg-white/50 p-4 rounded-lg">
-            <p className="font-bold text-3xl text-neutral-800 mb-2">24/7</p>
-            <p className="text-neutral-600">
+          <div className="bg-white/20 backdrop-blur-md border border-white/30 p-4 rounded-xl shadow-sm">
+            <p className="font-bold text-3xl text-[#F0660A] mb-2">24/7</p>
+            <p className="text-neutral-700 font-medium">
               Real-time monitoring & performance tracking
             </p>
           </div>
@@ -112,7 +112,7 @@ export function JourneySection() {
       ),
     },
     {
-      id: "growth", // ✅ Added unique ID
+      id: "growth",
       title: "Growth",
       content: (
         <div>
@@ -125,17 +125,17 @@ export function JourneySection() {
             digital landscape. Your success is our mission.
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            <div className="bg-white/50 p-4 rounded-lg text-center">
-              <p className="font-bold text-xl text-neutral-800 mb-1">300%+</p>
-              <p className="text-xs text-neutral-600">Avg Growth</p>
+            <div className="bg-white/20 backdrop-blur-md border border-white/30 p-4 rounded-xl shadow-sm text-center">
+              <p className="font-bold text-xl text-[#F0660A] mb-1">3x</p>
+              <p className="text-xs text-neutral-700 font-medium">Avg ROI</p>
             </div>
-            <div className="bg-white/50 p-4 rounded-lg text-center">
-              <p className="font-bold text-xl text-neutral-800 mb-1">500+</p>
-              <p className="text-xs text-neutral-600">Campaigns</p>
+            <div className="bg-white/20 backdrop-blur-md border border-white/30 p-4 rounded-xl shadow-sm text-center">
+              <p className="font-bold text-xl text-[#F0660A] mb-1">50M+</p>
+              <p className="text-xs text-neutral-700 font-medium">Impressions</p>
             </div>
-            <div className="bg-white/50 p-4 rounded-lg text-center">
-              <p className="font-bold text-xl text-neutral-800 mb-1">98%</p>
-              <p className="text-xs text-neutral-600">Satisfaction</p>
+            <div className="bg-white/20 backdrop-blur-md border border-white/30 p-4 rounded-xl shadow-sm text-center">
+              <p className="font-bold text-xl text-[#F0660A] mb-1">98%</p>
+              <p className="text-xs text-neutral-700 font-medium">Satisfaction</p>
             </div>
           </div>
         </div>

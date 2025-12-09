@@ -20,18 +20,14 @@ export const WavyTextSection = () => {
             <WavyBlockItem
               key={index}
               index={index}
-              className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold text-gray-900 leading-tight text-center md:text-left"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold text-gray-900 leading-tight text-center md:text-left"
             >
               {line}
             </WavyBlockItem>
           ))}
         </WavyBlock>
 
-        <div className="mt-8 sm:mt-12 md:mt-16 text-center">
-          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 max-w-2xl mx-auto px-4">
-            Award-winning digital solutions that transform brands and accelerate growth
-          </p>
-        </div>
+
       </div>
     </section>
   );

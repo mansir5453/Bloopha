@@ -11,38 +11,38 @@ import {
     GalleryContainer,
 } from "@/components/ui/animated-gallery";
 import StickyScroll from "@/components/ui/sticky-scroll";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, X } from "lucide-react";
 import { LiquidButton } from "@/components/ui/liquid-glass-button";
 
-const IMAGES_1 = [
-    "https://images.unsplash.com/photo-1529218402470-5dec8fea0761?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fGFkfGVufDB8fDB8fHww",
-    "https://images.unsplash.com/photo-1542051841857-5f90071e7989?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fHRva3lvfGVufDB8MHwwfHx8Mg%3D%3D",
-    "https://images.unsplash.com/photo-1604928141064-207cea6f571f?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8dG9reW98ZW58MHwwfDB8fHwy",
-    "https://images.unsplash.com/photo-1573455494060-c5595004fb6c?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8dG9reW98ZW58MHwwfDB8fHwy",
-];
-const IMAGES_2 = [
-    "https://images.unsplash.com/photo-1542052125323-e69ad37a47c2?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjJ8fHRva3lvfGVufDB8MHwwfHx8Mg%3D%3D",
-    "https://images.unsplash.com/photo-1564284369929-026ba231f89b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    "https://images.unsplash.com/photo-1532236204992-f5e85c024202?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjF8fHRva3lvfGVufDB8MHwwfHx8Mg%3D%3D",
-    "https://images.unsplash.com/photo-1493515322954-4fa727e97985?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fHRva3lvfGVufDB8MHwwfHx8Mg%3D%3D",
-];
-const IMAGES_3 = [
-    "https://images.unsplash.com/photo-1528361237150-8a9a7df33035?q=80&w=2340&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    "https://images.unsplash.com/photo-1493515322954-4fa727e97985?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    "https://images.unsplash.com/photo-1542051841857-5f90071e7989?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fHRva3lvfGVufDB8MHwwfHx8Mg%3D%3D",
-    "https://images.unsplash.com/photo-1608875004752-2fdb6a39ba4c?q=80&w=2340&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+const COL_1 = [
+    {
+        src: "/images/pot/bikjn.png",
+        alt: "Brand Asset 1 - Tall",
+    },
 ];
 
-import { Dialog, DialogContent, DialogTrigger, DialogTitle } from "@/components/ui/dialog";
+const COL_2 = [
+    {
+        src: "/images/pot/Black and Brown Simple Elegant Jewelry Boutique Brand Board.png",
+        alt: "Jewelry Brand Board Dark - Tall",
+    },
+];
+
+const COL_3 = [
+    {
+        src: "/images/pot/Elegant Jewelry Boutique Brand Board.png",
+        alt: "Jewelry Brand Board Light - Tall",
+    },
+];
+
+import { Dialog, DialogContent, DialogTrigger, DialogTitle, DialogClose } from "@/components/ui/dialog";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 
 export const MixedGallerySection = () => {
     return (
-        <section id="work" className="w-full relative">
+        <section id="work" className="w-full relative hidden md:block">
             {/* Part 1: 3D Animated Gallery */}
             <div className="relative pt-0 pb-0">
-                {/* Text and Buttons Removed */}
-
                 <div
                     className="pointer-events-none absolute top-0 left-0 z-0 h-[70vh] w-full"
                     style={{
@@ -56,108 +56,101 @@ export const MixedGallerySection = () => {
                 <ContainerScroll className="relative h-auto min-h-0 md:min-h-[50vh] md:h-[250vh]">
                     <ContainerSticky className="h-auto min-h-0 md:h-[100dvh] relative md:sticky top-auto md:top-0 flex items-center justify-center">
                         <GalleryContainer className="">
+                            {/* COLUMN 1 */}
                             <GalleryCol yRange={["-10%", "2%"]} className="-mt-2">
-                                {IMAGES_1.map((imageUrl, index) => (
-                                    <Dialog key={index}>
-                                        <DialogTrigger asChild>
-                                            <div className="cursor-pointer transition-transform hover:scale-[1.02]">
-                                                <NextImage
-                                                    className="aspect-video block h-auto max-h-full w-full rounded-md object-cover shadow"
-                                                    src={imageUrl}
-                                                    alt="gallery item"
-                                                    width={800}
-                                                    height={450}
-                                                />
-                                            </div>
-                                        </DialogTrigger>
-                                        <DialogContent className="max-w-[95vw] max-h-[95vh] w-full h-full p-0 bg-transparent border-none shadow-none flex items-center justify-center">
-                                            <VisuallyHidden>
-                                                <DialogTitle>Gallery Image Preview</DialogTitle>
-                                            </VisuallyHidden>
-                                            <div className="relative w-full h-full flex items-center justify-center">
-                                                <NextImage
-                                                    src={imageUrl}
-                                                    alt="gallery item full"
-                                                    fill
-                                                    className="object-contain"
-                                                    quality={100}
-                                                />
-                                            </div>
-                                        </DialogContent>
-                                    </Dialog>
+                                {COL_1.map((item, index) => (
+                                    <GalleryItem key={index} item={item} />
                                 ))}
                             </GalleryCol>
+
+                            {/* COLUMN 2 */}
                             <GalleryCol className="mt-[-10%] sm:mt-[-50%]" yRange={["15%", "5%"]}>
-                                {IMAGES_2.map((imageUrl, index) => (
-                                    <Dialog key={index}>
-                                        <DialogTrigger asChild>
-                                            <div className="cursor-pointer transition-transform hover:scale-[1.02]">
-                                                <NextImage
-                                                    className="aspect-video block h-auto max-h-full w-full rounded-md object-cover shadow"
-                                                    src={imageUrl}
-                                                    alt="gallery item"
-                                                    width={800}
-                                                    height={450}
-                                                />
-                                            </div>
-                                        </DialogTrigger>
-                                        <DialogContent className="max-w-[95vw] max-h-[95vh] w-full h-full p-0 bg-transparent border-none shadow-none flex items-center justify-center">
-                                            <VisuallyHidden>
-                                                <DialogTitle>Gallery Image Preview</DialogTitle>
-                                            </VisuallyHidden>
-                                            <div className="relative w-full h-full flex items-center justify-center">
-                                                <NextImage
-                                                    src={imageUrl}
-                                                    alt="gallery item full"
-                                                    fill
-                                                    className="object-contain"
-                                                    quality={100}
-                                                />
-                                            </div>
-                                        </DialogContent>
-                                    </Dialog>
+                                {COL_2.map((item, index) => (
+                                    <GalleryItem key={index} item={item} />
                                 ))}
                             </GalleryCol>
+
+                            {/* COLUMN 3 */}
                             <GalleryCol yRange={["-10%", "2%"]} className="-mt-2">
-                                {IMAGES_3.map((imageUrl, index) => (
-                                    <Dialog key={index}>
-                                        <DialogTrigger asChild>
-                                            <div className="cursor-pointer transition-transform hover:scale-[1.02]">
-                                                <NextImage
-                                                    className="aspect-video block h-auto max-h-full w-full rounded-md object-cover shadow"
-                                                    src={imageUrl}
-                                                    alt="gallery item"
-                                                    width={800}
-                                                    height={450}
-                                                />
-                                            </div>
-                                        </DialogTrigger>
-                                        <DialogContent className="max-w-[95vw] max-h-[95vh] w-full h-full p-0 bg-transparent border-none shadow-none flex items-center justify-center">
-                                            <VisuallyHidden>
-                                                <DialogTitle>Gallery Image Preview</DialogTitle>
-                                            </VisuallyHidden>
-                                            <div className="relative w-full h-full flex items-center justify-center">
-                                                <NextImage
-                                                    src={imageUrl}
-                                                    alt="gallery item full"
-                                                    fill
-                                                    className="object-contain"
-                                                    quality={100}
-                                                />
-                                            </div>
-                                        </DialogContent>
-                                    </Dialog>
+                                {COL_3.map((item, index) => (
+                                    <GalleryItem key={index} item={item} />
                                 ))}
                             </GalleryCol>
                         </GalleryContainer>
                     </ContainerSticky>
                 </ContainerScroll>
             </div>
-
-            {/* Part 2: Existing Sticky Scroll */}
-            {/* <div className="relative z-20">
-                <StickyScroll />
-            </div> */}
         </section>
+    );
+};
+
+// Reusable Item Component to handle Icons vs Images with Full Aspect Ratio
+const GalleryItem = ({ item }: { item: any }) => {
+    return (
+        <Dialog>
+            <DialogTrigger asChild>
+                <div className="cursor-pointer transition-transform hover:scale-[1.02] w-full">
+                    {item.isIconGrid ? (
+                        <div className="w-full bg-white p-4 grid grid-cols-2 gap-2 items-center justify-center border border-black/5 rounded-md aspect-square shadow">
+                            {item.icons?.map((iconSrc: string, i: number) => (
+                                <div key={i} className="relative aspect-square flex items-center justify-center p-2 bg-neutral-50 rounded-sm">
+                                    <NextImage
+                                        src={iconSrc}
+                                        alt="icon"
+                                        width={80}
+                                        height={80}
+                                        className="w-full h-full object-contain opacity-80"
+                                    />
+                                </div>
+                            ))}
+                        </div>
+                    ) : (
+                        <NextImage
+                            className="block h-auto w-full rounded-md object-contain shadow bg-white/50"
+                            src={item.src}
+                            alt={item.alt}
+                            width={800}
+                            height={1200} // Using a tall preset, but strict h-auto classes override this for display
+                        />
+                    )}
+                </div>
+            </DialogTrigger>
+            <DialogContent hideClose className="sm:max-w-[95vw] md:max-w-[95vw] max-w-[95vw] max-h-[95vh] w-full h-full p-0 bg-transparent border-none shadow-none flex items-center justify-center">
+                <VisuallyHidden>
+                    <DialogTitle>Preview</DialogTitle>
+                </VisuallyHidden>
+
+                <DialogClose className="fixed z-[110] top-4 right-4 md:top-8 md:right-8 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full backdrop-blur-md border border-white/10 transition-all hover:scale-110">
+                    <X className="w-6 h-6 md:w-8 md:h-8" />
+                    <span className="sr-only">Close</span>
+                </DialogClose>
+
+                <div className="relative w-full h-full flex items-center justify-center pointer-events-none">
+                    {item.isIconGrid ? (
+                        <div className="w-full max-w-2xl bg-white p-8 grid grid-cols-2 gap-4 rounded-xl pointer-events-auto">
+                            {item.icons?.map((iconSrc: string, i: number) => (
+                                <div key={i} className="relative aspect-square flex items-center justify-center p-4 bg-neutral-50 rounded-lg">
+                                    <NextImage
+                                        src={iconSrc}
+                                        alt="icon"
+                                        width={200}
+                                        height={200}
+                                        className="w-full h-full object-contain"
+                                    />
+                                </div>
+                            ))}
+                        </div>
+                    ) : (
+                        <NextImage
+                            src={item.src}
+                            alt="full view"
+                            fill
+                            className="object-contain pointer-events-auto"
+                            quality={100}
+                        />
+                    )}
+                </div>
+            </DialogContent>
+        </Dialog>
     );
 };

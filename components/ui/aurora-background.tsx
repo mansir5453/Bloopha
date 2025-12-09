@@ -29,7 +29,10 @@ export const AuroraBackground = ({
         {/* Aurora effect layer - z-0 */}
         <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
           <div
-            className="absolute -inset-[10px] pointer-events-none opacity-50 will-change-transform"
+            className={cn(
+              "absolute -inset-[10px] pointer-events-none opacity-50",
+              !isMobile && "will-change-transform"
+            )}
             style={{
               background: `
                 repeating-linear-gradient(
@@ -58,7 +61,10 @@ export const AuroraBackground = ({
             }}
           >
             <div
-              className="absolute inset-0 animate-aurora"
+              className={cn(
+                "absolute inset-0",
+                !isMobile && "animate-aurora"
+              )}
               style={{
                 background: `
                   repeating-linear-gradient(

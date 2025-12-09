@@ -1,19 +1,32 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import { Navigation } from "@/components/ui/navigation";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { ScrollTextSection } from "@/components/sections/ScrollTextSection";
 import { WavyTextSection } from "@/components/sections/WavyTextSection";
 import { MixedGallerySection } from "@/components/sections/MixedGallerySection";
+import { MobileGallerySection } from "@/components/sections/MobileGallerySection";
 import { ExpandedServicesSection } from "@/components/sections/ExpandedServicesSection";
 import { TechStackSection } from "@/components/sections/TechStackSection";
 import { JourneySection } from "@/components/sections/JourneySection";
-import { ScrollExpansionSection } from "@/components/sections/ScrollExpansionSection";
+import { ShowcaseSection } from "@/components/sections/ShowcaseSection";
 import { ContactSection } from "@/components/sections/ContactSection";
 import { Footer } from "@/components/ui/footer-section";
 import { AuroraBackground } from "@/components/ui/aurora-background";
 import { BackgroundPaths } from "@/components/ui/background-paths";
 import { OrangeGlow } from "@/components/ui/orange-glow";
 
+import { useIsMobile } from "@/hooks/use-mobile";
+
 export default function Home() {
+  const isMobile = useIsMobile();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   return (
     <main className="relative w-full">
       <Navigation />
@@ -29,11 +42,19 @@ export default function Home() {
           <HeroSection />
           <ScrollTextSection />
           <WavyTextSection />
-          <MixedGallerySection />
+
+          {mounted && (isMobile ? (
+            <MobileGallerySection />
+          ) : (
+            <>
+              <MixedGallerySection />
+              <ShowcaseSection />
+            </>
+          ))}
+
           <ExpandedServicesSection />
           <TechStackSection />
           <JourneySection />
-          <ScrollExpansionSection />
           <ContactSection />
         </div>
       </AuroraBackground>

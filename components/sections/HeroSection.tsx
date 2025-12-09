@@ -57,7 +57,7 @@ export const HeroSection = () => {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-4"
+      className="relative min-h-[85vh] md:min-h-screen flex flex-col items-center justify-center overflow-hidden px-4"
     >
       {/* Orange Glow Background Effect */}
       {/* Top Glow Effect matching Footer */}

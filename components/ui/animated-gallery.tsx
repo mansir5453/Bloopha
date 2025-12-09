@@ -106,13 +106,21 @@ export const GalleryContainer = ({
     children,
     className,
     style,
+    reverse = false,
     ...props
-}: React.HTMLAttributes<HTMLDivElement> & HTMLMotionProps<"div">) => {
+}: React.HTMLAttributes<HTMLDivElement> & HTMLMotionProps<"div"> & { reverse?: boolean }) => {
     const { scrollYProgress } = useContainerScrollContext()
     const isMobile = useIsMobile()
 
-    const rotateX = useTransform(scrollYProgress, [0, 0.5], [75, 0])
-    const scale = useTransform(scrollYProgress, [0.5, 0.9], [1.2, 1])
+    // Standard: [75, 0] (Enter). Mixed Gallery ends at 0.
+    // Reverse: [0, 75] (Exit). Showcase starts at 0.
+    const rotateX = useTransform(scrollYProgress, [0, 0.5], reverse ? [0, 75] : [75, 0])
+
+    // Standard: [1.2, 1] (Zoom Out).
+    // Reverse: [1, 0.8] (Zoom In/Fade away? or just smaller). Let's try [1, 1.2] to reverse the zoom, or [1, 0.8] to recede. 
+    // User said "reversed". If standard is Big->Small, reversed is Small->Big or Flat->Tilted.
+    // Let's go with [1, 0.8] (Getting smaller/further) to match the "leaving" vibe of tilting away.
+    const scale = useTransform(scrollYProgress, [0.5, 0.9], reverse ? [1, 0.8] : [1.2, 1])
 
     return (
         <motion.div

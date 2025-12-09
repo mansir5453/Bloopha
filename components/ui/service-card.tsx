@@ -3,6 +3,7 @@
 import { useRef, useState, useEffect, MouseEvent } from "react";
 import { GlowingEffect } from "@/components/ui/glowing-effect";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 interface ServiceCardProps {
   title: string;
@@ -39,6 +40,7 @@ export const ServiceCard = ({
   }, []);
 
   // 2. Magnetic / Tilt Logic
+  const isMobile = useIsMobile();
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
@@ -53,7 +55,7 @@ export const ServiceCard = ({
   }
 
   // Map mouse position to rotation degrees
-  const rotateX = useTransform(mouseY, [0, 400], [10, -10]); 
+  const rotateX = useTransform(mouseY, [0, 400], [10, -10]);
   const rotateY = useTransform(mouseX, [0, 350], [-10, 10]);
 
   return (
@@ -68,7 +70,7 @@ export const ServiceCard = ({
     >
       {/* Motion Div handles the Magnetic Tilt */}
       <motion.div
-        onMouseMove={onMouseMove}
+        onMouseMove={isMobile ? undefined : onMouseMove}
         onMouseLeave={() => {
           x.set(0);
           y.set(0);
@@ -84,7 +86,7 @@ export const ServiceCard = ({
         <GlowingEffect
           spread={40}
           glow={true}
-          disabled={false}
+          disabled={isMobile}
           proximity={80}
           inactiveZone={0.01}
           borderWidth={2}
@@ -100,7 +102,7 @@ export const ServiceCard = ({
 
             {/* Content */}
             <div className="space-y-3">
-              <h3 className="pt-0.5 text-xl leading-[1.375rem] font-semibold font-sans tracking-[-0.04em] md:text-2xl md:leading-[1.875rem] text-balance text-gray-900">
+              <h3 className="pt-0.5 text-xl leading-[1.375rem] font-semibold font-sans tracking-[-0.04em] md:text-2xl md:leading-[1.875rem] text-balance text-[#F0660A]">
                 {title}
               </h3>
 

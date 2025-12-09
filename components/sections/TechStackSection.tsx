@@ -78,7 +78,7 @@ export const TechStackSection = () => {
                         {isMobile ? (
                             // Mobile: Simple grid with fade-in
                             icons.map((icon, index) => (
-                                <div key={index} className="flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20">
+                                <div key={index} className="flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 text-[#F0660A]">
                                     {icon}
                                 </div>
                             ))
