@@ -20,28 +20,39 @@ export const ScrollTextSection = () => {
         const chars = textRef.current?.querySelectorAll(".char");
         if (!chars) return;
 
-        const tl = gsap.timeline({
-            scrollTrigger: {
-                trigger: containerRef.current,
-                start: "top bottom",
-                end: "center center",
-                scrub: 1,
-            }
-        });
+        const mm = gsap.matchMedia();
 
-        // Animate characters from scattered positions to center
-        tl.from(chars, {
-            x: (i) => {
-                const distance = i - centerIndex;
-                return distance * 150; // Increased distance for dramatic effect
-            },
-            rotateX: (i) => {
-                const distance = i - centerIndex;
-                return distance * 90;
-            },
-            opacity: 0,
-            duration: 1,
-            ease: "power2.out",
+        mm.add({
+            isDesktop: "(min-width: 768px)",
+            isMobile: "(max-width: 767px)",
+        }, (context) => {
+            const { isDesktop, isMobile } = context.conditions as { isDesktop: boolean; isMobile: boolean };
+
+            const tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: containerRef.current,
+                    start: isDesktop ? "top bottom" : "top 80%",
+                    end: isDesktop ? "center center" : "bottom 20%",
+                    scrub: isDesktop ? 1 : false, // Scrub on desktop only
+                    toggleActions: isDesktop ? undefined : "play none none reverse", // Auto-play on mobile
+                }
+            });
+
+            tl.from(chars, {
+                x: (i) => {
+                    const distance = i - centerIndex;
+                    // Larger movement on desktop, cleaner on mobile
+                    return distance * (isDesktop ? 150 : 50);
+                },
+                rotateX: (i) => {
+                    const distance = i - centerIndex;
+                    return distance * (isDesktop ? 90 : 45);
+                },
+                opacity: 0,
+                duration: isDesktop ? 1 : 1.5, // Duration mainly matters for mobile (timed)
+                stagger: isDesktop ? 0 : 0.05, // Stagger only for timed mobile effect
+                ease: isDesktop ? "power2.out" : "power3.out",
+            });
         });
 
     }, { scope: containerRef });

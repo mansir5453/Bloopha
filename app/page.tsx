@@ -25,6 +25,16 @@ export default function Home() {
 
   useEffect(() => {
     setMounted(true);
+
+    // Clean URL hash after navigation (e.g. comming from /about-us -> /#contact)
+    if (window.location.hash) {
+      // Wait a small moment for browser native scroll to kick in
+      const timer = setTimeout(() => {
+        history.replaceState(null, document.title, window.location.pathname + window.location.search);
+      }, 1000); // 1s delay to safely allow scroll to happen
+
+      return () => clearTimeout(timer);
+    }
   }, []);
 
   return (

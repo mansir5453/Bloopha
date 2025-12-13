@@ -54,10 +54,6 @@ const COL_3 = [
         src: "/images/pot/2.png",
         alt: "Brand Asset 2",
     },
-    {
-        src: "/images/pot/1.png",
-        alt: "Brand Asset 1",
-    },
 ];
 
 import { Dialog, DialogContent, DialogTrigger, DialogTitle, DialogClose } from "@/components/ui/dialog";

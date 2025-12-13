@@ -54,7 +54,7 @@ export const MixedGallerySection = () => {
                 />
 
                 <ContainerScroll className="relative h-auto min-h-0 md:min-h-[50vh] md:h-[320vh]">
-                    <ContainerSticky className="h-auto min-h-0 md:h-[100dvh] relative md:sticky top-auto md:top-0 flex items-center justify-center overflow-visible">
+                    <ContainerSticky className="h-auto min-h-0 md:h-[100dvh] relative md:sticky top-auto md:top-0 flex items-center justify-center overflow-hidden max-w-full">
                         <GalleryContainer className="">
                             {/* COLUMN 1 */}
                             <GalleryCol yRange={["-10%", "2%"]} className="-mt-2">

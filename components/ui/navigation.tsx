@@ -2,6 +2,7 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import { motion, useSpring, AnimatePresence } from "framer-motion";
+import { usePathname, useRouter } from "next/navigation";
 
 interface NavItem {
   label: string;
@@ -15,6 +16,8 @@ export const Navigation: React.FC = () => {
   const [isMobile, setIsMobile] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const hoverTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const pathname = usePathname();
+  const router = useRouter();
 
   const navItems: NavItem[] = [
     { label: "Home", id: "hero" },
@@ -41,8 +44,13 @@ export const Navigation: React.FC = () => {
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  // SCROLL DETECTION - Automatically detect active section
+  // SCROLL DETECTION - Automatically detect active section (Only on Home)
   useEffect(() => {
+    if (pathname !== "/") {
+      setActiveSection(""); // No active section on subpages
+      return;
+    }
+
     const handleScroll = () => {
       const scrollPosition = window.scrollY + 200;
 
@@ -64,7 +72,7 @@ export const Navigation: React.FC = () => {
     handleScroll();
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [pathname]); // Depend on pathname
 
   // Handle hover/click expansion
   useEffect(() => {
@@ -104,13 +112,26 @@ export const Navigation: React.FC = () => {
     setActiveSection(sectionId);
     setExpanded(false); // Collapse on click
 
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth", block: "start" });
+    if (pathname === "/") {
+      // We are on home, simple smooth scroll
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth", block: "start" });
+        // Clean URL hash if it was added automatically by browser (though scrollIntoView usually doesn't)
+        window.history.pushState(null, "", " ");
+      }
+    } else {
+      // We are on a subpage (e.g. /privacy-policy), need to route to home
+      router.push(`/#${sectionId}`);
     }
   };
 
   const activeItem = navItems.find((item) => item.id === activeSection);
+
+  // If no active item (e.g. subpage), default to "Home" text or bloopha? 
+  // Or just show "Menu" when collapsed on subpages. 
+  // Current logic: navItems.find will be undefined.
+  // Let's modify the render to handle undefined activeItem.
 
   return (
     <div className="fixed top-6 left-0 right-0 z-50 flex justify-center pointer-events-none">
@@ -182,34 +203,32 @@ export const Navigation: React.FC = () => {
               'Inter, -apple-system, BlinkMacSystemFont, "SF Pro", sans-serif',
           }}
         >
-          {/* Collapsed state - shows current section */}
+          {/* Collapsed state - shows current section OR "Menu" if subpage */}
           {!expanded && (
             <div className="flex items-center justify-center w-full">
               <AnimatePresence mode="wait">
-                {activeItem && (
-                  <motion.span
-                    key={activeItem.id}
-                    initial={{ opacity: 0, y: 8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -8 }}
-                    transition={{
-                      duration: 0.2,
-                      ease: "easeInOut",
-                    }}
-                    style={{
-                      fontSize: "15px",
-                      fontWeight: 600,
-                      color: "#F0660A",
-                      letterSpacing: "0.3px",
-                      whiteSpace: "nowrap",
-                      fontFamily:
-                        'Inter, -apple-system, BlinkMacSystemFont, "SF Pro", sans-serif',
-                      WebkitFontSmoothing: "antialiased",
-                    }}
-                  >
-                    {activeItem.label}
-                  </motion.span>
-                )}
+                <motion.span
+                  key={activeItem ? activeItem.id : "menu-label"}
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{
+                    duration: 0.2,
+                    ease: "easeInOut",
+                  }}
+                  style={{
+                    fontSize: "15px",
+                    fontWeight: 600,
+                    color: "#F0660A",
+                    letterSpacing: "0.3px",
+                    whiteSpace: "nowrap",
+                    fontFamily:
+                      'Inter, -apple-system, BlinkMacSystemFont, "SF Pro", sans-serif',
+                    WebkitFontSmoothing: "antialiased",
+                  }}
+                >
+                  {activeItem ? activeItem.label : "Menu"}
+                </motion.span>
               </AnimatePresence>
             </div>
           )}

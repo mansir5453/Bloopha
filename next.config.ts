@@ -12,6 +12,7 @@ const nextConfig: NextConfig = {
         hostname: "i.pravatar.cc",
       },
     ],
+    qualities: [75, 100],
   },
   typescript: {
     ignoreBuildErrors: false,

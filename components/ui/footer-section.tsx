@@ -3,6 +3,7 @@ import React from "react";
 import type { ComponentProps, ReactNode } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { FacebookIcon, InstagramIcon, LinkedinIcon, YoutubeIcon, TwitterIcon } from "lucide-react";
+import Link from "next/link";
 
 interface FooterLink {
     title: string;
@@ -19,19 +20,19 @@ const footerLinks: FooterSection[] = [
     {
         label: "Explore",
         links: [
-            { title: "Home", href: "#hero" },
-            { title: "Our Work", href: "#work" },
-            { title: "Services", href: "#services" },
-            { title: "Journey", href: "#journey" },
+            { title: "Home", href: "/#hero" },
+            { title: "Our Work", href: "/#work" },
+            { title: "Services", href: "/#services" },
+            { title: "Journey", href: "/#journey" },
         ],
     },
     {
         label: "Company",
         links: [
-            { title: "About Us", href: "#" },
-            { title: "Contact", href: "#contact" },
-            { title: "Privacy Policy", href: "#" },
-            { title: "Terms of Service", href: "#" },
+            { title: "About Us", href: "/about-us" },
+            { title: "Contact", href: "/#contact" },
+            { title: "Privacy Policy", href: "/privacy-policy" },
+            { title: "Terms of Service", href: "/terms-of-service" },
         ],
     },
     {
@@ -74,15 +75,25 @@ export function Footer() {
                                 <ul className="space-y-3 text-sm">
                                     {section.links.map((link) => (
                                         <li key={link.title}>
-                                            <a
-                                                href={link.href}
-                                                target={link.href.startsWith("http") ? "_blank" : undefined}
-                                                rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                                                className="text-gray-600 hover:text-[#F0660A] inline-flex items-center transition-colors duration-300"
-                                            >
-                                                {link.icon && <link.icon className="me-2 size-4" />}
-                                                {link.title}
-                                            </a>
+                                            {link.href.startsWith("http") ? (
+                                                <a
+                                                    href={link.href}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="text-gray-600 hover:text-[#F0660A] inline-flex items-center transition-colors duration-300"
+                                                >
+                                                    {link.icon && <link.icon className="me-2 size-4" />}
+                                                    {link.title}
+                                                </a>
+                                            ) : (
+                                                <Link
+                                                    href={link.href}
+                                                    className="text-gray-600 hover:text-[#F0660A] inline-flex items-center transition-colors duration-300"
+                                                >
+                                                    {link.icon && <link.icon className="me-2 size-4" />}
+                                                    {link.title}
+                                                </Link>
+                                            )}
                                         </li>
                                     ))}
                                 </ul>

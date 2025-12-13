@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Preloader } from "@/components/layout/Preloader";
 import SmoothScroll from "@/components/ui/smooth-scroll";
+import { Analytics } from "@vercel/analytics/next";
 
 export const viewport = {
   themeColor: "#dedede",
@@ -66,13 +67,36 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" data-scroll-behavior="smooth">
       <body className="antialiased">
         <SmoothScroll />
         <Preloader />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "name": "Bloopha",
+              "url": "https://bloopha.com",
+              "logo": "https://bloopha.com/icon.png",
+              "sameAs": [
+                "https://www.instagram.com/thebloopha"
+              ],
+              "contactPoint": {
+                "@type": "ContactPoint",
+                "telephone": "",
+                "contactType": "customer service",
+                "email": "contact@bloopha.com"
+              },
+              "description": "Bloopha transforms ambitious brands through immersive digital experiences, strategic marketing, and high-end web design."
+            })
+          }}
+        />
         <div id="main-content" style={{ opacity: 0 }}>
           {children}
         </div>
+        <Analytics />
       </body>
     </html>
   );

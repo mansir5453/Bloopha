@@ -19,7 +19,7 @@ const PRELOADER_WORDS = [
 ];
 
 export function Preloader() {
-  const [isLoading, setIsLoading] = useState(true);
+
   /* State for manual play interaction */
   const [showPlayButton, setShowPlayButton] = useState(false);
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
@@ -30,22 +30,27 @@ export function Preloader() {
 
   // Hydration fix: Ensure we only render interaction logic after mount
   const [mounted, setMounted] = useState(false);
+  const [shouldRender, setShouldRender] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     setMounted(true);
   }, []);
 
   // Master Timer: Force close preloader after 6 seconds no matter what
   useEffect(() => {
+    if (!isLoading) return; // Don't set timer if already skipped
+
     const masterTimer = setTimeout(() => {
       setIsLoading(false);
     }, 6000);
 
     return () => clearTimeout(masterTimer);
-  }, []);
+  }, [isLoading]);
 
   // Fallback Timer: If video doesn't start in 2.5s, show fallback (ONLY if not showing play button)
   useEffect(() => {
-    if (isVideoPlaying || showPlayButton) return;
+    if (isVideoPlaying || showPlayButton || !isLoading) return;
 
     const fallbackTimer = setTimeout(() => {
       if (!isVideoPlaying && !showPlayButton) {
@@ -54,10 +59,10 @@ export function Preloader() {
     }, 2500);
 
     return () => clearTimeout(fallbackTimer);
-  }, [isVideoPlaying, showPlayButton]);
+  }, [isVideoPlaying, showPlayButton, isLoading]);
 
   useEffect(() => {
-    if (videoRef.current && mounted) {
+    if (videoRef.current && mounted && isLoading) {
       // Ensure muted is set for autoplay policies
       videoRef.current.muted = true;
       videoRef.current.defaultMuted = true;
@@ -77,7 +82,7 @@ export function Preloader() {
         });
       }
     }
-  }, [mounted]);
+  }, [mounted, isLoading]);
 
   const handleVideoEnd = () => {
     setIsLoading(false);
@@ -105,7 +110,8 @@ export function Preloader() {
 
 
   useGSAP(() => {
-    if (!isLoading) {
+    // Only animate OUT if we were actually rendering (i.e., not skipped)
+    if (!isLoading && shouldRender) {
       const mainContent = document.getElementById("main-content");
 
       // Kill WordLoader animations if they are running
@@ -115,18 +121,22 @@ export function Preloader() {
 
       const tl = gsap.timeline();
 
-      tl.to(containerRef.current, {
-        opacity: 0,
-        duration: 0.8,
-        ease: "power2.inOut",
-        onComplete: () => {
-          if (containerRef.current) {
-            containerRef.current.style.display = "none";
+      if (containerRef.current) {
+        tl.to(containerRef.current, {
+          opacity: 0,
+          duration: 0.8,
+          ease: "power2.inOut",
+          onComplete: () => {
+            if (containerRef.current) {
+              containerRef.current.style.display = "none";
+            }
+            document.body.style.overflow = "auto";
           }
-          document.body.style.overflow = "auto";
-        }
-      })
-        .fromTo(
+        })
+      }
+
+      if (mainContent) {
+        tl.fromTo(
           mainContent,
           { opacity: 0 },
           {
@@ -136,10 +146,11 @@ export function Preloader() {
           },
           "-=0.5"
         );
+      }
     }
-  }, [isLoading]);
+  }, [isLoading, shouldRender]);
 
-  if (!mounted) return null;
+  if (!mounted || !shouldRender) return null;
 
   return (
     <div

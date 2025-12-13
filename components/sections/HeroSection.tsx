@@ -61,7 +61,7 @@ export const HeroSection = () => {
     >
       {/* Orange Glow Background Effect */}
       {/* Top Glow Effect matching Footer */}
-      <div className="absolute top-0 left-0 right-0 h-[200px] bg-[radial-gradient(60%_200px_at_50%_0%,rgba(240,102,10,0.4),transparent)] pointer-events-none" />
+      <div className="absolute top-0 left-0 right-0 h-[60px] bg-[radial-gradient(60%_60px_at_50%_0%,rgba(240,102,10,0.2),transparent)] pointer-events-none" />
       <div className="absolute top-0 right-1/2 left-1/2 h-[2px] w-3/4 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-r from-transparent via-[#F0660A] to-transparent blur-[4px] opacity-100 pointer-events-none" />
 
       {/* Orange Glow removed for seamless blending */}
