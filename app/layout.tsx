@@ -3,6 +3,7 @@ import "./globals.css";
 import { Preloader } from "@/components/layout/Preloader";
 import SmoothScroll from "@/components/ui/smooth-scroll";
 import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export const viewport = {
   themeColor: "#dedede",
@@ -97,6 +98,7 @@ export default function RootLayout({
           {children}
         </div>
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
