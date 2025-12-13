@@ -16,6 +16,7 @@ export const MobileGallerySection = () => {
                         height={1200}
                         className="w-full h-auto object-contain drop-shadow-2xl"
                         priority
+                        sizes="(max-width: 640px) 90vw, 450px"
                     />
                 </div>
             </div>

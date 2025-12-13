@@ -76,6 +76,7 @@ export const HeroSection = () => {
             quality={100}
             className="w-full max-w-[300px] sm:max-w-[450px] md:max-w-[600px] lg:max-w-[750px] h-auto object-contain select-none"
             priority
+            sizes="(max-width: 640px) 300px, (max-width: 768px) 450px, (max-width: 1024px) 600px, 750px"
           />
         </div>
         <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl max-w-4xl mx-auto mb-8 sm:mb-10 md:mb-14 leading-relaxed animate-fade-in-up delay-100 px-4 text-[#F0660A] flex flex-col items-center font-light tracking-wide">

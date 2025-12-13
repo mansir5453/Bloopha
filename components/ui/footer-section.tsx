@@ -62,7 +62,7 @@ export function Footer() {
                     <p className="text-gray-600 text-sm md:text-base max-w-xs leading-relaxed">
                         Crafting immersive digital realities that transform brands and captivate audiences.
                     </p>
-                    <p className="text-gray-500 text-sm mt-8">
+                    <p className="text-gray-600 text-sm mt-8">
                         © {new Date().getFullYear()} Bloopha. All rights reserved.
                     </p>
                 </AnimatedContainer>
@@ -80,7 +80,7 @@ export function Footer() {
                                                     href={link.href}
                                                     target="_blank"
                                                     rel="noopener noreferrer"
-                                                    className="text-gray-600 hover:text-[#F0660A] inline-flex items-center transition-colors duration-300"
+                                                    className="text-gray-700 hover:text-[#F0660A] inline-flex items-center transition-colors duration-300"
                                                 >
                                                     {link.icon && <link.icon className="me-2 size-4" />}
                                                     {link.title}
@@ -88,7 +88,7 @@ export function Footer() {
                                             ) : (
                                                 <Link
                                                     href={link.href}
-                                                    className="text-gray-600 hover:text-[#F0660A] inline-flex items-center transition-colors duration-300"
+                                                    className="text-gray-700 hover:text-[#F0660A] inline-flex items-center transition-colors duration-300"
                                                 >
                                                     {link.icon && <link.icon className="me-2 size-4" />}
                                                     {link.title}
