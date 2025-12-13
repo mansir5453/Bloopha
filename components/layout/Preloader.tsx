@@ -134,19 +134,6 @@ export function Preloader() {
           }
         })
       }
-
-      if (mainContent) {
-        tl.fromTo(
-          mainContent,
-          { opacity: 0 },
-          {
-            opacity: 1,
-            duration: 0.8,
-            ease: "power2.out",
-          },
-          "-=0.5"
-        );
-      }
     }
   }, [isLoading, shouldRender]);
 
@@ -193,7 +180,9 @@ export function Preloader() {
             onError={handleVideoError}
             className="w-full h-full object-contain pointer-events-none"
             controls={false}
-          />
+          >
+            <track kind="captions" src="data:text/vtt;charset=utf-8,WEBVTT" label="English" default />
+          </video>
           {showPlayButton && (
             <div className="absolute inset-0 z-50 flex items-center justify-center bg-black/20 backdrop-blur-sm">
               <button

@@ -8,7 +8,6 @@ export const viewport = {
   themeColor: "#dedede",
   width: "device-width",
   initialScale: 1,
-  maximumScale: 1,
 };
 
 export const metadata: Metadata = {
@@ -93,7 +92,7 @@ export default function RootLayout({
             })
           }}
         />
-        <div id="main-content" style={{ opacity: 0 }}>
+        <div id="main-content">
           {children}
         </div>
         <Analytics />

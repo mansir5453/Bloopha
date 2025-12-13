@@ -42,7 +42,7 @@ export const ContactSection = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
           {/* Left Column */}
           <div className="space-y-6 sm:space-y-8">
-            <div>
+            <div className="text-center lg:text-left">
               <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 sm:mb-6">
                 Let's build the
                 <br />
@@ -51,7 +51,7 @@ export const ContactSection = () => {
               <p className="text-sm sm:text-base md:text-lg text-gray-600 mb-4">
                 Ready to elevate your brand? Bloopha transforms visions into digital reality.
               </p>
-              <div className="inline-block px-4 py-2 bg-green-100 text-green-700 rounded-full text-xs sm:text-sm font-medium">
+              <div className="inline-block px-4 py-2 bg-green-100 text-green-700 rounded-full text-xs sm:text-sm font-medium mx-auto lg:mx-0">
                 Accepting new projects for Q4 2025
               </div>
             </div>
@@ -83,10 +83,11 @@ export const ContactSection = () => {
                 <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6 h-full flex flex-col justify-center">
                   <input type="hidden" name="utf8" value="✓" />
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
                       Name
                     </label>
                     <input
+                      id="name"
                       required
                       type="text"
                       name="name"
@@ -96,10 +97,11 @@ export const ContactSection = () => {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
                       Email
                     </label>
                     <input
+                      id="email"
                       required
                       type="email"
                       name="email"
@@ -109,10 +111,10 @@ export const ContactSection = () => {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label htmlFor="projectType" className="block text-sm font-medium text-gray-700 mb-2">
                       Project Type
                     </label>
-                    <select name="projectType" className="w-full px-4 py-2 sm:py-3 rounded-lg border border-gray-200 bg-white text-black focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-sm sm:text-base backdrop-blur-sm">
+                    <select id="projectType" name="projectType" className="w-full px-4 py-2 sm:py-3 rounded-lg border border-gray-200 bg-white text-black focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-sm sm:text-base backdrop-blur-sm">
                       <option value="Brand Identity">Brand Identity</option>
                       <option value="Website Design">Website Design</option>
                       <option value="Marketing Strategy">Marketing Strategy</option>
@@ -120,10 +122,11 @@ export const ContactSection = () => {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
                       Message
                     </label>
                     <textarea
+                      id="message"
                       required
                       name="message"
                       rows={4}
