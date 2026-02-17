@@ -16,21 +16,21 @@ import { LiquidButton } from "@/components/ui/liquid-glass-button";
 
 const COL_1 = [
     {
-        src: "/images/pot/bikjn.png",
+        src: "/images/pot/bikjn.webp",
         alt: "Brand Asset 1 - Tall",
     },
 ];
 
 const COL_2 = [
     {
-        src: "/images/pot/Black and Brown Simple Elegant Jewelry Boutique Brand Board.png",
+        src: "/images/pot/Black and Brown Simple Elegant Jewelry Boutique Brand Board.webp",
         alt: "Jewelry Brand Board Dark - Tall",
     },
 ];
 
 const COL_3 = [
     {
-        src: "/images/pot/Elegant Jewelry Boutique Brand Board.png",
+        src: "/images/pot/Elegant Jewelry Boutique Brand Board.webp",
         alt: "Jewelry Brand Board Light - Tall",
     },
 ];

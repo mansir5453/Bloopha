@@ -51,9 +51,7 @@ export const ContactSection = () => {
               <p className="text-sm sm:text-base md:text-lg text-gray-600 mb-4">
                 Ready to elevate your brand? Bloopha transforms visions into digital reality.
               </p>
-              <div className="inline-block px-4 py-2 bg-green-100 text-green-700 rounded-full text-xs sm:text-sm font-medium mx-auto lg:mx-0">
-                Accepting new projects for Q4 2025
-              </div>
+
             </div>
 
             {/* Testimonial */}

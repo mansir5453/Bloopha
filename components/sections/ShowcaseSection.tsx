@@ -17,41 +17,41 @@ import { LiquidButton } from "@/components/ui/liquid-glass-button";
 // Split items for Parallax Columns
 const COL_1 = [
     {
-        src: "/images/pot/ertj.png",
+        src: "/images/pot/ertj.webp",
         alt: "Brand Icon 1",
     },
     {
-        src: "/images/pot/8.png",
+        src: "/images/pot/8.webp",
         alt: "Brand Asset 6",
     },
     {
-        src: "/images/pot/rtj.png",
+        src: "/images/pot/rtj.webp",
         alt: "Brand Icon 2",
     },
 ];
 
 const COL_2 = [
     {
-        src: "/images/pot/7.png",
+        src: "/images/pot/7.webp",
         alt: "Brand Asset 4",
     },
     {
-        src: "/images/pot/tj.png",
+        src: "/images/pot/tj.webp",
         alt: "Brand Icon 3",
     },
     {
-        src: "/images/pot/5.png",
+        src: "/images/pot/5.webp",
         alt: "Brand Asset 5",
     },
 ];
 
 const COL_3 = [
     {
-        src: "/images/pot/3.png",
+        src: "/images/pot/3.webp",
         alt: "Brand Asset 3",
     },
     {
-        src: "/images/pot/2.png",
+        src: "/images/pot/2.webp",
         alt: "Brand Asset 2",
     },
 ];

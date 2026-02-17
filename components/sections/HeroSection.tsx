@@ -69,7 +69,7 @@ export const HeroSection = () => {
       <div className="relative z-30 text-center px-4 sm:px-6 max-w-5xl mx-auto w-full hero-content">
         <div className="mb-3 sm:mb-4 md:mb-6 animate-fade-in-up delay-0 flex justify-center hero-logo">
           <Image
-            src="/bloopha-logo-new.png"
+            src="/bloopha-logo-new.webp"
             alt="Bloopha Logo"
             width={1920}
             height={720}

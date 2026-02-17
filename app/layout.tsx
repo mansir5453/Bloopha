@@ -32,6 +32,9 @@ export const metadata: Metadata = {
       follow: true,
     },
   },
+  verification: {
+    google: "vwCrIRrwGH3DIHpfpZ-MJE71jJqh_9ZaX6COs57PQLQ",
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -41,7 +44,7 @@ export const metadata: Metadata = {
     siteName: "Bloopha",
     images: [
       {
-        url: "/images/pot/opentag.png", // Assuming a generic share image or I can point to one of the gallery items if no specific og-image exists
+        url: "/images/pot/opentag.webp", // Assuming a generic share image or I can point to one of the gallery items if no specific og-image exists
         width: 1200,
         height: 630,
         alt: "Bloopha Digital Agency Showcase",
@@ -52,11 +55,11 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Bloopha | Premium Digital Agency",
     description: "Transforming brands with immersive design and strategic marketing.",
-    images: ["/images/pot/opentag.png"], // Consistent with OG using a placeholder path or existing asset
+    images: ["/images/pot/opentag.webp"], // Consistent with OG using a placeholder path or existing asset
   },
   icons: {
-    icon: "/icon.png",
-    apple: "/apple-icon.png",
+    icon: "/icon.webp",
+    apple: "/apple-icon.webp",
   },
 };
 
@@ -67,6 +70,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" data-scroll-behavior="smooth">
+      <head>
+        <link rel="preload" href="/videos/scroll-video.mp4" as="video" type="video/mp4" />
+      </head>
       <body className="antialiased">
         <SmoothScroll />
         <Preloader />
@@ -78,7 +84,7 @@ export default function RootLayout({
               "@type": "Organization",
               "name": "Bloopha",
               "url": "https://bloopha.com",
-              "logo": "https://bloopha.com/icon.png",
+              "logo": "https://bloopha.com/icon.webp",
               "sameAs": [
                 "https://www.instagram.com/thebloopha"
               ],

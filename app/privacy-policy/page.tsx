@@ -1,9 +1,18 @@
-"use client";
-
 import React from "react";
+import { Metadata } from "next";
 import { Navigation } from "@/components/ui/navigation";
 import { Footer } from "@/components/ui/footer-section";
 import { AuroraBackground } from "@/components/ui/aurora-background";
+
+export const metadata: Metadata = {
+    title: "Privacy Policy | Bloopha",
+    description: "Read Bloopha's Privacy Policy to understand how we collect, use, and protect your personal data.",
+    openGraph: {
+        title: "Privacy Policy | Bloopha",
+        description: "Read Bloopha's Privacy Policy to understand how we collect, use, and protect your personal data.",
+        url: "https://bloopha.com/privacy-policy",
+    },
+};
 
 export default function PrivacyPolicy() {
     return (

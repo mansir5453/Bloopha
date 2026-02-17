@@ -1,8 +1,17 @@
-"use client";
-
 import React from "react";
+import { Metadata } from "next";
 import { Navigation } from "@/components/ui/navigation";
 import { Footer } from "@/components/ui/footer-section";
+
+export const metadata: Metadata = {
+    title: "Terms of Service | Bloopha",
+    description: "Review the Terms of Service for using Bloopha's website and services.",
+    openGraph: {
+        title: "Terms of Service | Bloopha",
+        description: "Review the Terms of Service for using Bloopha's website and services.",
+        url: "https://bloopha.com/terms-of-service",
+    },
+};
 
 export default function TermsOfService() {
     return (

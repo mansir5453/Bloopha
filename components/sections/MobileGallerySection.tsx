@@ -10,7 +10,7 @@ export const MobileGallerySection = () => {
                 {/* Title Space Placeholder if needed or just gap */}
                 <div className="relative w-full">
                     <Image
-                        src="/images/no.png"
+                        src="/images/no.webp"
                         alt="Selected Works Gallery"
                         width={800}
                         height={1200}

@@ -178,7 +178,7 @@ export function Preloader() {
             onTimeUpdate={handleVideoUpdate}
             onPlaying={handleVideoUpdate}
             onError={handleVideoError}
-            className="w-full h-full object-contain pointer-events-none"
+            className="w-full h-full object-contain pointer-events-none will-change-transform"
             controls={false}
           >
             <track kind="captions" src="data:text/vtt;charset=utf-8,WEBVTT" label="English" default />
