@@ -87,7 +87,7 @@ export const HeroSection = () => {
               <motion.span
                 key={index}
                 className="absolute font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#F0660A] to-[#ff9e5e]"
-                initial={{ opacity: 0, y: 50 }}
+                initial={index === 0 ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
                 animate={
                   titleNumber === index
                     ? { y: 0, opacity: 1 }
