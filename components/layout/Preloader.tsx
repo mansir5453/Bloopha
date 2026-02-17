@@ -173,7 +173,7 @@ export function Preloader() {
             autoPlay
             muted
             playsInline
-            preload="auto"
+            preload="none"
             onEnded={handleVideoEnd}
             onTimeUpdate={handleVideoUpdate}
             onPlaying={handleVideoUpdate}

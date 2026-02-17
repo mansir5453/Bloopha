@@ -71,7 +71,6 @@ export default function RootLayout({
   return (
     <html lang="en" data-scroll-behavior="smooth">
       <head>
-        <link rel="preload" href="/videos/scroll-video.mp4" as="video" type="video/mp4" />
         <link rel="preload" href="/bloopha-logo-new.webp" as="image" type="image/webp" />
       </head>
       <body className="antialiased">

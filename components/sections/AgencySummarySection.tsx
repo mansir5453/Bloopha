@@ -10,7 +10,7 @@ export const AgencySummarySection = () => {
                     <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
                         Redefining Digital Excellence
                     </h2>
-                    <div className="w-24 h-1 bg-[#F0660A] mx-auto rounded-full" />
+                    <div className="w-24 h-1 bg-[#c2410c] mx-auto rounded-full" />
                 </div>
 
                 <div className="prose prose-lg max-w-none">
