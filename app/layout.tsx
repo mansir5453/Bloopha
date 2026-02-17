@@ -58,8 +58,8 @@ export const metadata: Metadata = {
     images: ["/images/pot/opentag.webp"], // Consistent with OG using a placeholder path or existing asset
   },
   icons: {
-    icon: "/icon.webp",
-    apple: "/apple-icon.webp",
+    icon: "/icon.png",
+    apple: "/apple-icon.png",
   },
 };
 

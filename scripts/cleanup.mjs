@@ -26,7 +26,8 @@ const cleanup = () => {
             const ext = path.extname(file).toLowerCase();
             if (extensions.includes(ext)) {
                 const filePath = path.join(dir, file);
-                const webpPath = filePath.substring(0, filePath.lastIndexOf(ext)) + '.webp';
+                const parsed = path.parse(filePath);
+                const webpPath = path.join(parsed.dir, parsed.name + '.webp');
 
                 if (fs.existsSync(webpPath)) {
                     console.log(`Deleting ${filePath} (WebP exists)`);
