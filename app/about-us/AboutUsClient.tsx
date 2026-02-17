@@ -35,6 +35,7 @@ export default function AboutUsClient() {
                     </div>
 
                     {/* Our Story / Vision Grid */}
+                    {/* Our Story / Vision Grid */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 w-full mb-24 text-left">
                         <div className="bg-white/50 backdrop-blur-xl border border-white/40 p-8 rounded-[2rem] shadow-sm hover:shadow-md transition-shadow">
                             <div className="flex items-center gap-3 mb-4">
@@ -43,8 +44,11 @@ export default function AboutUsClient() {
                                 </div>
                                 <h2 className="text-2xl font-bold text-gray-900">Our Story</h2>
                             </div>
+                            <p className="text-gray-600 leading-relaxed mb-4">
+                                Bloopha was born from a simple yet powerful realization: most businesses settle for digital mediocrity. In a world saturated with template-based websites and generic user experiences, we saw a need for something radically different—an agency that treats every pixel as a promise of quality.
+                            </p>
                             <p className="text-gray-600 leading-relaxed">
-                                Bloopha was born from the belief that modern businesses need more than just a website—they need an identity. As a new company, we bring unbridled energy, modern techniques, and zero legacy baggage. We treat every project as our flagship, dedicating intense focus to layout, motion, and user experience.
+                                As a new and agile force in the industry, we bring unbridled energy, modern techniques, and zero legacy baggage. We don't just build websites; we craft digital identities that resonate. We treat every project as our flagship, dedicating intense focus to layout, motion, and user experience, ensuring that your brand doesn't just show up to the party—it hosts it.
                             </p>
                         </div>
 
@@ -55,8 +59,11 @@ export default function AboutUsClient() {
                                 </div>
                                 <h2 className="text-2xl font-bold text-gray-900">Our Mission</h2>
                             </div>
+                            <p className="text-gray-600 leading-relaxed mb-4">
+                                Our mission is to bridge the gap between "functional" and "phenomenal." We exist to help ambitious brands—whether scrappy startups or established titans—redefine their digital presence.
+                            </p>
                             <p className="text-gray-600 leading-relaxed">
-                                To bridge the gap between "functional" and "phenomenal." We exist to help ambitious brands—whether startups or established names—redefine their digital presence. We don't just deliver code; we deliver results, traffic, and brand authority through cutting-edge SEO and high-performance design.
+                                We believe that speed, aesthetics, and usability should never be a tradeoff. By leveraging cutting-edge technologies like Next.js and GSAP, we deliver results that are measurably faster and visibly stunning. We don't just deliver code; we deliver results, traffic, and brand authority through deep SEO optimization and high-performance design that turns visitors into loyal advocates.
                             </p>
                         </div>
                     </div>

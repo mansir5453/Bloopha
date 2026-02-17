@@ -16,6 +16,7 @@ import { Footer } from "@/components/ui/footer-section";
 import { AuroraBackground } from "@/components/ui/aurora-background";
 import { BackgroundPaths } from "@/components/ui/background-paths";
 import { OrangeGlow } from "@/components/ui/orange-glow";
+import { AgencySummarySection } from "@/components/sections/AgencySummarySection";
 
 import { useIsMobile } from "@/hooks/use-mobile";
 
@@ -66,6 +67,7 @@ export default function Home() {
           <TechStackSection />
           <JourneySection />
           <ContactSection />
+          <AgencySummarySection />
         </div>
       </AuroraBackground>
 

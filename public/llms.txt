@@ -1,0 +1,26 @@
+# Bloopha - Premium Digital Agency
+
+## About
+Bloopha is a forward-thinking digital agency specializing in immersive web design, strategic branding, and high-performance development. We help ambitious brands redefine their digital presence through cutting-edge aesthetic and technical excellence.
+
+## Core Services
+- **Web Design & UX**: Creating stunning, immersive interfaces/layouts that captivate users instantly.
+- **Development**: Robust, scalable code using modern tech like Next.js, React, GSAP, and TailwindCSS.
+- **Digital Strategy**: Data-driven planning, SEO optimization, and growth analytics to ensure your digital product performs.
+- **Mobile First**: Optimized experiences for every device, ensuring speed, fluidity, and engagement.
+
+## Content & Resources
+- **Home**: https://bloopha.com/ - Our main portfolio and service overview.
+- **About Us**: https://bloopha.com/about-us - Our story, mission, and team vision.
+- **Services**: https://bloopha.com/#services - Detailed breakdown of what we offer.
+- **Process**: https://bloopha.com/#process - How we take projects from concept to launch.
+
+## Contact
+- **Email**: contact@bloopha.com
+- **Socials**: 
+  - Instagram: https://www.instagram.com/thebloopha
+  - Twitter: https://twitter.com/bloopha
+  - LinkedIn: https://www.linkedin.com/company/bloopha
+
+## Technical Stack
+We utilize a modern stack including Next.js (App Router), React, TailwindCSS, Framer Motion, and GSAP for animations, ensuring high performance (Core Web Vitals optimized) and SEO friendliness.
