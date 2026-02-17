@@ -79,23 +79,48 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Organization",
-              "name": "Bloopha",
-              "url": "https://bloopha.com",
-              "logo": "https://bloopha.com/icon.webp",
-              "sameAs": [
-                "https://www.instagram.com/thebloopha"
-              ],
-              "contactPoint": {
-                "@type": "ContactPoint",
-                "telephone": "",
-                "contactType": "customer service",
-                "email": "contact@bloopha.com"
+            __html: JSON.stringify([
+              {
+                "@context": "https://schema.org",
+                "@type": "Organization",
+                "name": "Bloopha",
+                "url": "https://bloopha.com",
+                "logo": "https://bloopha.com/icon.png",
+                "sameAs": [
+                  "https://www.instagram.com/thebloopha",
+                  "https://twitter.com/bloopha",
+                  "https://www.linkedin.com/company/bloopha"
+                ],
+                "contactPoint": {
+                  "@type": "ContactPoint",
+                  "telephone": "",
+                  "contactType": "customer service",
+                  "email": "contact@bloopha.com"
+                },
+                "description": "Bloopha transforms ambitious brands through immersive digital experiences, strategic marketing, and high-end web design."
               },
-              "description": "Bloopha transforms ambitious brands through immersive digital experiences, strategic marketing, and high-end web design."
-            })
+              {
+                "@context": "https://schema.org",
+                "@type": "WebSite",
+                "name": "Bloopha",
+                "url": "https://bloopha.com",
+                "potentialAction": {
+                  "@type": "SearchAction",
+                  "target": "https://bloopha.com/?s={search_term_string}",
+                  "query-input": "required name=search_term_string"
+                }
+              },
+              {
+                "@context": "https://schema.org",
+                "@type": "BreadcrumbList",
+                "itemListElement": [{
+                  "@type": "ListItem",
+                  "position": 1,
+                  "name": "Home",
+                  "item": "https://bloopha.com"
+                }]
+              }
+            ])
           }}
         />
         <div id="main-content">

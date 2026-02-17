@@ -13,5 +13,45 @@ export const metadata: Metadata = {
 };
 
 export default function AboutUs() {
-    return <AboutUsClient />;
+    return (
+        <>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify([
+                        {
+                            "@context": "https://schema.org",
+                            "@type": "AboutPage",
+                            "mainEntity": {
+                                "@type": "Organization",
+                                "name": "Bloopha",
+                                "description": "Bloopha is a digital agency focused on crafting immersive digital realities.",
+                                "logo": "https://bloopha.com/icon.png",
+                                "url": "https://bloopha.com"
+                            }
+                        },
+                        {
+                            "@context": "https://schema.org",
+                            "@type": "BreadcrumbList",
+                            "itemListElement": [
+                                {
+                                    "@type": "ListItem",
+                                    "position": 1,
+                                    "name": "Home",
+                                    "item": "https://bloopha.com"
+                                },
+                                {
+                                    "@type": "ListItem",
+                                    "position": 2,
+                                    "name": "About Us",
+                                    "item": "https://bloopha.com/about-us"
+                                }
+                            ]
+                        }
+                    ])
+                }}
+            />
+            <AboutUsClient />
+        </>
+    );
 }
