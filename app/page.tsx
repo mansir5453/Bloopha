@@ -1,24 +1,25 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Navigation } from "@/components/ui/navigation";
-import { HeroSection } from "@/components/sections/HeroSection";
-import { ScrollTextSection } from "@/components/sections/ScrollTextSection";
-import { WavyTextSection } from "@/components/sections/WavyTextSection";
-import { MixedGallerySection } from "@/components/sections/MixedGallerySection";
-import { MobileGallerySection } from "@/components/sections/MobileGallerySection";
-import { ExpandedServicesSection } from "@/components/sections/ExpandedServicesSection";
-import { TechStackSection } from "@/components/sections/TechStackSection";
-import { JourneySection } from "@/components/sections/JourneySection";
-import { ShowcaseSection } from "@/components/sections/ShowcaseSection";
-import { ContactSection } from "@/components/sections/ContactSection";
 import { Footer } from "@/components/ui/footer-section";
 import { AuroraBackground } from "@/components/ui/aurora-background";
 import { BackgroundPaths } from "@/components/ui/background-paths";
 import { OrangeGlow } from "@/components/ui/orange-glow";
-import { AgencySummarySection } from "@/components/sections/AgencySummarySection";
-
+import { Navigation } from "@/components/ui/navigation";
+import { HeroSection } from "@/components/sections/HeroSection";
+import dynamic from "next/dynamic";
 import { useIsMobile } from "@/hooks/use-mobile";
+
+const ScrollTextSection = dynamic(() => import("@/components/sections/ScrollTextSection").then(mod => mod.ScrollTextSection));
+const WavyTextSection = dynamic(() => import("@/components/sections/WavyTextSection").then(mod => mod.WavyTextSection));
+const MixedGallerySection = dynamic(() => import("@/components/sections/MixedGallerySection").then(mod => mod.MixedGallerySection));
+const MobileGallerySection = dynamic(() => import("@/components/sections/MobileGallerySection").then(mod => mod.MobileGallerySection));
+const ShowcaseSection = dynamic(() => import("@/components/sections/ShowcaseSection").then(mod => mod.ShowcaseSection));
+const ExpandedServicesSection = dynamic(() => import("@/components/sections/ExpandedServicesSection").then(mod => mod.ExpandedServicesSection));
+const TechStackSection = dynamic(() => import("@/components/sections/TechStackSection").then(mod => mod.TechStackSection));
+const JourneySection = dynamic(() => import("@/components/sections/JourneySection").then(mod => mod.JourneySection));
+const ContactSection = dynamic(() => import("@/components/sections/ContactSection").then(mod => mod.ContactSection));
+const AgencySummarySection = dynamic(() => import("@/components/sections/AgencySummarySection").then(mod => mod.AgencySummarySection));
 
 export default function Home() {
   const isMobile = useIsMobile();

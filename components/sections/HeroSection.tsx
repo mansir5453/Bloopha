@@ -76,6 +76,7 @@ export const HeroSection = () => {
             quality={100}
             className="w-full max-w-[300px] sm:max-w-[450px] md:max-w-[600px] lg:max-w-[750px] h-auto object-contain select-none"
             priority
+            fetchPriority="high"
             sizes="(max-width: 640px) 300px, (max-width: 768px) 450px, (max-width: 1024px) 600px, 750px"
           />
         </div>
@@ -110,7 +111,7 @@ export const HeroSection = () => {
             }}
             className="w-full sm:w-auto"
           >
-            <span className="font-bold flex items-center gap-2 justify-center text-sm sm:text-base text-[#F0660A]">
+            <span className="font-bold flex items-center gap-2 justify-center text-sm sm:text-base text-[#c2410c]">
               Discover Excellence
               <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
             </span>

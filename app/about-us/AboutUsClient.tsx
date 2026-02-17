@@ -107,7 +107,7 @@ export default function AboutUsClient() {
                             {["Discovery", "Strategy", "Execution", "Optimization", "Growth"].map((step, i) => (
                                 <div key={step} className="flex items-center gap-4">
                                     <div className="flex flex-col items-center">
-                                        <span className="text-xs font-bold text-[#F0660A] tracking-wider uppercase mb-1">Step {i + 1}</span>
+                                        <span className="text-xs font-bold text-[#c2410c] tracking-wider uppercase mb-1">Step {i + 1}</span>
                                         <span className="text-lg md:text-xl font-bold text-gray-900">{step}</span>
                                     </div>
                                     {i < 4 && <div className="hidden md:block w-12 h-[2px] bg-orange-200" />}
